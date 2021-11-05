@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/jetpack-mvvm-demo.iml" filepath="$PROJECT_DIR$/.idea/modules/jetpack-mvvm-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/jetpack-mvvm-demo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/jetpack-mvvm-demo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/commonmvvm/jetpack-mvvm-demo.commonmvvm.iml" filepath="$PROJECT_DIR$/.idea/modules/commonmvvm/jetpack-mvvm-demo.commonmvvm.iml" />
     </modules>
   </component>
 </project>

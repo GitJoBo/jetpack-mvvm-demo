@@ -4,6 +4,17 @@
     <asm skipDebug="true" skipFrames="true" skipCode="false" expandFrames="false" />
     <groovy codeStyle="LEGACY" />
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="commonmvvm/src/main/res/layout/activity_base.xml" value="0.35885416666666664" />
+        <entry key="commonmvvm/src/main/res/layout/layout_empty.xml" value="0.35885416666666664" />
+        <entry key="commonmvvm/src/main/res/layout/layout_error.xml" value="0.35885416666666664" />
+        <entry key="commonmvvm/src/main/res/layout/layout_loading.xml" value="0.35885416666666664" />
+        <entry key="commonmvvm/src/main/res/layout/layout_loading_view.xml" value="0.35885416666666664" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

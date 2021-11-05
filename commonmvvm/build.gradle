@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk project.ANDROID_COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        applicationId ANDROID_APPLICATION_ID
+        minSdk ANDROID_MIN_SDK_VERSION as int
+        targetSdk ANDROID_TARGET_SDK_VERSION as int
+        versionCode ANDROID_VERSION_CODE as int
+        versionName ANDROID_VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:$CORE_KTX"
+    implementation "androidx.appcompat:appcompat:$APPCOMPAT"
+    implementation "com.google.android.material:material:$MATERIAL"
+    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINTLAYOUT"
+    testImplementation "junit:junit:$JUNIT"
+    androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"
+
+    //rxHttp
+    api "com.squareup.okhttp3:okhttp:4.9.1"
+    api 'com.github.liujingxing.rxhttp:rxhttp:2.7.2'
+    //log
+    api "com.github.zhaokaiqiang.klog:library:1.6.0"
+}
