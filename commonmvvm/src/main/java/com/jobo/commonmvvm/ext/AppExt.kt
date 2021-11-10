@@ -8,9 +8,10 @@ import com.jobo.commonmvvm.base.appContext
 import java.util.*
 
 /**
- * 作者　: hegaojian
- * 时间　: 2020/11/17
- * 描述　:
+ * @Desc:
+ * @author: admin wsj
+ * @Date: 2021/11/10 1:14 下午
+ *
  */
 
 /**
@@ -58,7 +59,10 @@ fun getAppVersion(context: Context): String {
 
 private val activityList = LinkedList<Activity>()
 
-//app当前显示的Activity
+/**
+ * app当前显示的Activity
+ * 注意{@link com.jobo.commonmvvm.utils.KtxActivityLifecycleCallbacks}
+ */
 val currentActivity: Activity? get() = if (activityList.isNullOrEmpty()) null else activityList.last
 
 /**
