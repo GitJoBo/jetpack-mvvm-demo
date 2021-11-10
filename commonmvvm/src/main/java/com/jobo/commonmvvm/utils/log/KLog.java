@@ -1,8 +1,8 @@
 package com.jobo.commonmvvm.utils.log;
 
-
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
 
 import java.io.File;
 import java.io.PrintWriter;

@@ -14,9 +14,6 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
-/**
- * Created by zhaokaiqiang on 15/11/18.
- */
 public class FileLog {
 
     private static final String FILE_PREFIX = "KLog_";

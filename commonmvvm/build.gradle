@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
@@ -44,5 +44,5 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:4.9.1"
     api 'com.github.liujingxing.rxhttp:rxhttp:2.7.2'
     //log
-    api "com.github.zhaokaiqiang.klog:library:1.6.0"
+//    api "com.github.zhaokaiqiang.klog:library:1.6.0"
 }

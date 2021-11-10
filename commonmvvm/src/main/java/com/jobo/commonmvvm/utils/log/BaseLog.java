@@ -2,9 +2,6 @@ package com.jobo.commonmvvm.utils.log;
 
 import android.util.Log;
 
-/**
- * Created by zhaokaiqiang on 15/11/18.
- */
 public class BaseLog {
 
     private static final int MAX_LENGTH = 4000;
