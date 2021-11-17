@@ -4,6 +4,12 @@ import android.view.View
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.net.LoadingDialogEntity
 
+/**
+ * @Desc: view层接口，用于方法规范
+ * @author: admin wsj
+ * @Date: 2021/11/17 2:02 下午
+ *
+ */
 interface BaseIView {
     /**
      * 子类可传入需要被包裹的View，做状态显示-空、错误、加载
