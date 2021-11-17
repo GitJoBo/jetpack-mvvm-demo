@@ -18,19 +18,27 @@ import com.jobo.commonmvvm.state.BaseLoadingCallback
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 
+/**
+ * @Desc: fragment基类，默认不使用ViewBinding和dataBinding
+ * @author: admin wsj
+ * @Date: 2021/11/17 2:49 下午
+ *
+ */
 abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIView {
     /**
      * 界面状态管理者
      */
     lateinit var uiStatusManger: LoadService<*>
+
     /**
      * 是否是第一次加载
      */
-    private var isFirst:Boolean = true
+    private var isFirst: Boolean = true
+
     /**
      * 当前view绑定的范型类ViewModel
      */
-    lateinit var mViewModel:VM
+    lateinit var mViewModel: VM
 
     /**
      * 父类activity
@@ -41,18 +49,18 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
 //        return super.onCreateView(inflater, container, savedInstanceState)
         isFirst = true
         javaClass.simpleName.logD()
-        val rootView = if (dataBindView == null){
-            inflater.inflate(layoutId,container,false)
-        }else{
+        val rootView = if (dataBindView == null) {
+            inflater.inflate(layoutId, container, false)
+        } else {
             dataBindView
         }
-        return if (getLoadingView() == null){
+        return if (getLoadingView() == null) {
             uiStatusManger = LoadSir.getDefault().register(rootView) {
                 onLoadRetry()
             }
             container?.removeView(uiStatusManger.loadLayout)
             uiStatusManger.loadLayout
-        }else{
+        } else {
             rootView
         }
     }
@@ -89,7 +97,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
      * 已创建View 执行在 initView 之前，
      * @param savedInstanceState Bundle?
      */
-    open fun onCreatedView(savedInstanceState: Bundle?){
+    open fun onCreatedView(savedInstanceState: Bundle?) {
 
     }
 
@@ -148,12 +156,12 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
     /**
      * 注册 UI 事件 监听请求时的回调UI的操作
      */
-    fun addLoadingUiChange(viewModel:BaseViewModel) {
+    fun addLoadingUiChange(viewModel: BaseViewModel) {
         viewModel.loadingChange.run {
             loading.observe(this@BaseVmFragment) {
-                when(it.loadingType){
+                when (it.loadingType) {
                     //通用弹窗Dialog
-                    LoadingType.LOADING_DIALOG ->{
+                    LoadingType.LOADING_DIALOG -> {
                         if (it.isShow) {
                             showLoading(it)
                         } else {
@@ -161,7 +169,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
                         }
                     }
                     //不同的请求自定义loading
-                    LoadingType.LOADING_CUSTOM ->{
+                    LoadingType.LOADING_CUSTOM -> {
                         if (it.isShow) {
                             showCustomLoading(it)
                         } else {
@@ -169,7 +177,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
                         }
                     }
                     //请求时 xml显示 loading
-                    LoadingType.LOADING_XML ->{
+                    LoadingType.LOADING_XML -> {
                         if (it.isShow) {
                             showLoadingUi()
                         }
