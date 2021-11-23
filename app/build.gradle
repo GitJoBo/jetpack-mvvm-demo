@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -17,10 +19,25 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
+        debug {
+            minifyEnabled false //关闭混淆
+            shrinkResources false
+            zipAlignEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled true //开启混淆
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures{
+        //如果您计划在 Kotlin 项目中使用数据绑定，您应该应用 kotlin-kapt 插件。
+        dataBinding = true
+        //对“viewBinding”的访问超出其访问权限
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -32,12 +49,19 @@ android {
 }
 
 dependencies {
+    implementation project(":ui_common")
+    //banner
+    implementation "com.github.zhpanvip:BannerViewPager:3.5.2"
+    //启动优化异步加载
+    api "com.effective.android:anchors:1.1.1"
 
-    implementation "androidx.core:core-ktx:$CORE_KTX"
-    implementation "androidx.appcompat:appcompat:$APPCOMPAT"
-    implementation "com.google.android.material:material:$MATERIAL"
-    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINTLAYOUT"
-    testImplementation "junit:junit:$JUNIT"
-    androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"
+//    implementation "androidx.core:core-ktx:$CORE_KTX"
+//    implementation "androidx.appcompat:appcompat:$APPCOMPAT"
+//    implementation "com.google.android.material:material:$MATERIAL"
+//    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINTLAYOUT"
+//    testImplementation "junit:junit:$JUNIT"
+//    androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"
+
+
 }

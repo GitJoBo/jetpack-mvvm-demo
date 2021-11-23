@@ -2,5 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jobo.commonmvvm">
 
-
+    <application>
+        <provider
+            android:name=".base.Ktx"
+            android:authorities="${applicationId}.KtxInstaller"
+            android:exported="false" />
+    </application>
 </manifest>

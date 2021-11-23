@@ -51,19 +51,19 @@ class LogUtils private constructor() {
          * @param msg 日志内容
          */
         fun debugLongInfo(tag: String?, msg: String) {
-            var msg = msg
-            if (!isLog || TextUtils.isEmpty(msg)) {
+            var messgae = msg
+            if (!isLog || TextUtils.isEmpty(messgae)) {
                 return
             }
-            msg = msg.trim { it <= ' ' }
+            messgae = messgae.trim { it <= ' ' }
             var index = 0
             val maxLength = 3500
             var sub: String
-            while (index < msg.length) {
-                sub = if (msg.length <= index + maxLength) {
-                    msg.substring(index)
+            while (index < messgae.length) {
+                sub = if (messgae.length <= index + maxLength) {
+                    messgae.substring(index)
                 } else {
-                    msg.substring(index, index + maxLength)
+                    messgae.substring(index, index + maxLength)
                 }
                 index += maxLength
                 Log.d(tag, sub.trim { it <= ' ' })

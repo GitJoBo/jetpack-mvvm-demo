@@ -18,7 +18,7 @@ abstract class BaseVbFragment<VM : BaseViewModel, VB : ViewBinding> : BaseVmFrag
     //使用了 ViewBinding 就不需要 layoutId了，因为 会从 VB 泛型 找到相关的view
     override val layoutId: Int = 0
 
-    lateinit var mViewBind: VB
+    lateinit var mBind: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +37,9 @@ abstract class BaseVbFragment<VM : BaseViewModel, VB : ViewBinding> : BaseVmFrag
         val superClass = javaClass.genericSuperclass
         val aClass = (superClass as ParameterizedType).actualTypeArguments[1] as Class<*>
         val method = aClass.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
-        mViewBind = method.invoke(null, inflater, container, false) as VB
+        mBind = method.invoke(null, inflater, container, false) as VB
         //如果重新加载，需要清空之前的view，不然会报错
         (dataBindView?.parent as? ViewGroup)?.removeView(dataBindView)
-        dataBindView = mViewBind.root
+        dataBindView = mBind.root
     }
 }

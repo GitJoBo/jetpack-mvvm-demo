@@ -1,29 +1,40 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        maven { url 'https://jitpack.io' }
         maven { url 'https://repo1.maven.org/maven2/' }
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url "https://mirrors.tencent.com/repository/maven/tencent_public" }
-        maven { url "https://mirrors.tencent.com/repository/maven/liteavsdk" }
-        maven { url "https://mirrors.tencent.com/nexus/repository/maven-public/" }
+//        maven { url "https://mirrors.tencent.com/repository/maven/tencent_public" }
+//        maven { url "https://mirrors.tencent.com/repository/maven/liteavsdk" }
+        //maven { url "https://mirrors.tencent.com/nexus/repository/maven-public/" }似乎影响rxhttp，必须在maven { url 'https://jitpack.io' }后面，会增加rebuild时间
+//        maven { url "https://mirrors.tencent.com/nexus/repository/maven-public/" }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven { url 'https://jitpack.io' }
         mavenLocal()
         mavenCentral()
         google()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
+//移到settings.gradle里了
+//allprojects {
+//    repositories {
+//        google()
+//        maven { url 'https://jitpack.io' }
+//        //阿里云云效仓库：https://maven.aliyun.com/mvn/guide
+//        maven { url 'https://maven.aliyun.com/repository/central' }
+//    }
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

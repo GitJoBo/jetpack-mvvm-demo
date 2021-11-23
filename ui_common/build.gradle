@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk project.ANDROID_COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+//        applicationId ANDROID_APPLICATION_ID
+        minSdk ANDROID_MIN_SDK_VERSION as int
+        targetSdk ANDROID_TARGET_SDK_VERSION as int
+        versionCode ANDROID_VERSION_CODE as int
+        versionName ANDROID_VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+//    api "androidx.core:core-ktx:$CORE_KTX"
+//    api "androidx.appcompat:appcompat:$APPCOMPAT"
+//    api "com.google.android.material:material:$MATERIAL"
+//    api "androidx.constraintlayout:constraintlayout:$CONSTRAINTLAYOUT"
+//    testImplementation "junit:junit:$JUNIT"
+//    androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"
+    api project(":commonmvvm")
+
+    //自定义标题TitleBar
+    api 'com.github.getActivity:TitleBar:9.2'
+    //微信开源项目，替代SP
+    api 'com.tencent:mmkv-static:1.2.10'
+}

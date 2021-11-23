@@ -98,17 +98,17 @@ class DefaultFormatPrinter : FormatPrinter {
         message: String,
         responseUrl: String
     ) {
-        var bodyString = bodyString
-        bodyString =
+        var bodyStringVar = bodyString
+        bodyStringVar =
             when {
-                isJson(contentType) -> jsonFormat(bodyString!!)
+                isJson(contentType) -> jsonFormat(bodyStringVar!!)
                 isXml(
                     contentType
-                ) -> xmlFormat(bodyString)
-                else -> bodyString
+                ) -> xmlFormat(bodyStringVar)
+                else -> bodyStringVar
             }
         val responseBody =
-            LINE_SEPARATOR + BODY_TAG + LINE_SEPARATOR + bodyString
+            LINE_SEPARATOR + BODY_TAG + LINE_SEPARATOR + bodyStringVar
         val tag = getTag(false)
         val urlLine = arrayOf<String?>(
             URL_TAG + responseUrl,

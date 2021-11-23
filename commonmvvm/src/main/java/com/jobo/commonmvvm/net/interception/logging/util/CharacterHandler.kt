@@ -46,24 +46,24 @@ class CharacterHandler private constructor() {
          */
         @JvmStatic
         fun jsonFormat(json: String): String {
-            var json = json
-            if (TextUtils.isEmpty(json)) {
+            var jsonVar = json
+            if (TextUtils.isEmpty(jsonVar)) {
                 return "Empty/Null json content"
             }
             var message: String
             try {
-                json = json.trim { it <= ' ' }
-                message = if (json.startsWith("{")) {
-                    val jsonObject = JSONObject(json)
+                jsonVar = jsonVar.trim { it <= ' ' }
+                message = if (jsonVar.startsWith("{")) {
+                    val jsonObject = JSONObject(jsonVar)
                     jsonObject.toString(4)
-                } else if (json.startsWith("[")) {
-                    val jsonArray = JSONArray(json)
+                } else if (jsonVar.startsWith("[")) {
+                    val jsonArray = JSONArray(jsonVar)
                     jsonArray.toString(4)
                 } else {
-                    json
+                    jsonVar
                 }
             } catch (e: JSONException) {
-                message = json
+                message = jsonVar
             } catch (error: OutOfMemoryError) {
                 message = "Output omitted because of Object size"
             }
