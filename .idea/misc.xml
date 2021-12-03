@@ -7,21 +7,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/item_imgselector.xml" value="0.3287037037037037" />
         <entry key="app/src/main/res/drawable/selector_nav_color.xml" value="0.3416666666666667" />
+        <entry key="app/src/main/res/drawable/title_lable_shap.xml" value="0.3287037037037037" />
+        <entry key="app/src/main/res/drawable/title_lable_shap1.xml" value="0.3287037037037037" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/activity_webview.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_four.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_one.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_three.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_two.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/include_title_bar.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/include_titlebar.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/item_article.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/item_project.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/item_splach_banner.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/layout_collect_view_checked.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/layout_collect_view_unchecked.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/menu/main_navigation.xml" value="0.35885416666666664" />
-        <entry key="commonmvvm/src/main/res/layout/activity_base.xml" value="0.35885416666666664" />
+        <entry key="commonmvvm/src/main/res/layout/activity_base.xml" value="0.19593613933236576" />
         <entry key="commonmvvm/src/main/res/layout/layout_empty.xml" value="0.35885416666666664" />
         <entry key="commonmvvm/src/main/res/layout/layout_error.xml" value="0.35885416666666664" />
         <entry key="commonmvvm/src/main/res/layout/layout_loading.xml" value="0.35885416666666664" />
         <entry key="commonmvvm/src/main/res/layout/layout_loading_view.xml" value="0.35885416666666664" />
         <entry key="ui_common/src/main/res/drawable-xxhdpi/selector_login_key_visible.xml" value="0.3453703703703704" />
+        <entry key="ui_common/src/main/res/layout/activity_err.xml" value="0.35885416666666664" />
         <entry key="ui_common/src/main/res/layout/activity_list.xml" value="0.35885416666666664" />
         <entry key="ui_common/src/main/res/layout/activity_login.xml" value="0.35885416666666664" />
         <entry key="ui_common/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
@@ -41,7 +52,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

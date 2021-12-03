@@ -6,12 +6,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.jobo.commonmvvm.base.BaseDbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.gone
-import com.jobo.commonmvvm.ext.toStartActivity
 import com.jobo.commonmvvm.ext.visible
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.ActivitySplashBinding
 import com.jobo.jetpack_mvvm_demo.ui.adapter.SplashBannerAdapter
-import com.jobo.uicommon.data.annotation.ValueKey
+import com.jobo.commonmvvm.data.annotation.ValueKey
+import com.jobo.commonmvvm.ext.toStartActivity
 import com.jobo.uicommon.ext.mmkv
 import com.zhpan.bannerview.BannerViewPager
 
@@ -58,7 +58,7 @@ class SplashActivity : BaseDbActivity<BaseViewModel, ActivitySplashBinding>() {
     }
 
     private fun jumpToMainActivity(){
-        toStartActivity(MainActivity::class.java)
+        toStartActivity<MainActivity>(this)
         finish()
     }
 

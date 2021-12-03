@@ -32,7 +32,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
     lateinit var mViewModel: VM
 
     //toolbar 这个可替换成自己想要的标题栏
-    private var mTitleBarView: View? = null
+    protected var mTitleBarView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

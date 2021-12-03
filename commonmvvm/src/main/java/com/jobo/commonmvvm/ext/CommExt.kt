@@ -8,6 +8,8 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.text.TextUtils
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -74,39 +76,87 @@ fun Activity.hideOffKeyboard() {
     }
 }
 
-fun toStartActivity(@NonNull clz: Class<*>) {
-    val intent = Intent(appContext, clz)
+//fun toStartActivity(@NonNull clz: Class<*>) {
+//    val intent = Intent(appContext, clz)
+//    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//    appContext.startActivity(intent)
+//}
+
+//fun toStartActivity(@NonNull clz: Class<*>, @NonNull bundle: Bundle) {
+//    val intent = Intent(appContext, clz)
+//    intent.apply {
+//        putExtras(bundle)
+//        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//    }
+//    appContext.startActivity(intent)
+//}
+//
+//fun toStartActivity(activity: Activity, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
+//    activity.startActivityForResult(Intent(appContext, clz).putExtras(bundle), code)
+//}
+//
+//fun toStartActivity(fragment: Fragment, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
+//    fragment.startActivityForResult(Intent(appContext, clz).putExtras(bundle), code)
+//}
+//
+//fun toStartActivity(activity: Activity, @NonNull intent: Intent, code: Int) {
+//    activity.startActivityForResult(intent, code)
+//}
+//
+//fun toStartActivity(@NonNull type: Any, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
+//    if (type is Activity) {
+//        toStartActivity(type, clz, code, bundle)
+//    } else if (type is Fragment) {
+//        toStartActivity(type, clz, code, bundle)
+//    }
+//}
+
+/**
+ * 启动Activity
+ * -FLAG_ACTIVITY_NEW_TASK
+ */
+inline fun <reified T : Activity> toStartActivity() {
+    val intent = Intent(appContext, T::class.java)
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     appContext.startActivity(intent)
 }
 
-fun toStartActivity(@NonNull clz: Class<*>, @NonNull bundle: Bundle) {
-    val intent = Intent(appContext, clz)
-    intent.apply {
-        putExtras(bundle)
-        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+/**
+ * 启动Activity
+ * @param activity Activity
+ * example
+ *      toStartActivity<MainActivity>(activity)
+ */
+inline fun <reified T : Activity> toStartActivity(activity: Activity) {
+    activity.startActivity(Intent(activity, T::class.java))
+}
+
+/**
+ * 启动Activity
+ * @param activity Activity
+ * @param bundle Bundle
+ */
+inline fun <reified T : Activity> toStartActivity(activity: Activity, bundle: Bundle) {
+    val intent = Intent(activity, T::class.java)
+    intent.putExtras(bundle)
+    activity.startActivity(intent)
+}
+
+/**
+ * 启动Activity
+ * @param activity Activity
+ * @param pair Array<out Pair<String, String>?>
+ * example
+ *      toStartActivity<MainActivity>(activity,Pair("KEY1", "VALUE1"),Pair("KEY2", "VALUE2"))
+ */
+inline fun <reified T : Activity> toStartActivity(activity: Activity, vararg pair: Pair<String, String>?) {
+    val mIntent = Intent(activity, T::class.java)
+    pair?.let {
+        pair.forEach {
+            mIntent.putExtra(it!!.first, it.second)
+        }
     }
-    appContext.startActivity(intent)
-}
-
-fun toStartActivity(activity: Activity, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
-    activity.startActivityForResult(Intent(appContext, clz).putExtras(bundle), code)
-}
-
-fun toStartActivity(fragment: Fragment, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
-    fragment.startActivityForResult(Intent(appContext, clz).putExtras(bundle), code)
-}
-
-fun toStartActivity(activity: Activity, @NonNull intent: Intent, code: Int) {
-    activity.startActivityForResult(intent, code)
-}
-
-fun toStartActivity(@NonNull type: Any, @NonNull clz: Class<*>, code: Int, @NonNull bundle: Bundle) {
-    if (type is Activity) {
-        toStartActivity(type, clz, code, bundle)
-    } else if (type is Fragment) {
-        toStartActivity(type, clz, code, bundle)
-    }
+    activity.startActivity(mIntent)
 }
 
 /**
@@ -173,5 +223,13 @@ fun getStringArrayExt(id: Int): Array<String> = appContext.resources.getStringAr
 fun getIntArrayExt(id: Int) = appContext.resources.getIntArray(id)
 
 fun getDimensionExt(id: Int) = appContext.resources.getDimension(id)
+
+fun String.toHtml(flag: Int = Html.FROM_HTML_MODE_LEGACY): Spanned {
+    return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        Html.fromHtml(this, flag)
+    } else {
+        Html.fromHtml(this)
+    }
+}
 
 

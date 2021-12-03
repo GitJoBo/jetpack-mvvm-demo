@@ -1,4 +1,4 @@
-package com.jobo.uicommon.data.response
+package com.jobo.commonmvvm.data.response
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

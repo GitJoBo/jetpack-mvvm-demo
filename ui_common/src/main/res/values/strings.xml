@@ -1,15 +1,4 @@
 <resources>
-    <string name="bottom_title_read">One</string>
-    <string name="bottom_title_paper">Two</string>
-    <string name="bottom_title_report">Three</string>
-    <string name="bottom_title_user">Four</string>
 
-
-    <string name="login_submit">登录</string>
-    <string name="login_password">密码</string>
-    <string name="login_phone">手机号</string>
-    <string name="login_register">注册</string>
-    <string name="login_tips">教师账号登录</string>
-
-
+    <string name="ui_common_error_occurred">不好意思App翻车了。\n请拿已复制好的错误日志去啪啪啪得打作者的脸</string>
 </resources>

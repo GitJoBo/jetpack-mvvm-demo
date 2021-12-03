@@ -1,4 +1,4 @@
-package com.jobo.uicommon.data.annotation
+package com.jobo.commonmvvm.data.annotation
 
 
 object ValueKey {

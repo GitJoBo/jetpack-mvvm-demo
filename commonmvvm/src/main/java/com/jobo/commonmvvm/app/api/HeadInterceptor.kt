@@ -1,4 +1,4 @@
-package com.jobo.jetpack_mvvm_demo.app.api
+package com.jobo.commonmvvm.app.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -71,7 +71,11 @@ dependencies {
     //利用liveData发送消息
     api 'com.kunminx.arch:unpeek-livedata:7.1.0-beta1'
     //material-dialog
+    api "com.afollestad.material-dialogs:lifecycle:3.3.0"
     api "com.afollestad.material-dialogs:core:3.3.0"
+    api "com.afollestad.material-dialogs:color:3.3.0"
+    api "com.afollestad.material-dialogs:datetime:3.3.0"
+    api "com.afollestad.material-dialogs:bottomsheets:3.3.0"
     //log
 //    api "com.github.zhaokaiqiang.klog:library:1.6.0"
     //管理界面状态
@@ -82,4 +86,16 @@ dependencies {
     //通过标签直接生成shape，无需再写shape.xml
 //    api "com.noober.background:core:1.6.5"
     api "com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2"
+    //屏幕适配
+    api 'me.jessyan:autosize:1.2.1'
+    //防崩溃
+    api 'cat.ereza:customactivityoncrash:2.3.0'
+    //https://github.com/Blankj/AndroidUtilCode
+    api 'com.blankj:utilcodex:1.30.6'
+    //glide
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    //加载webview
+    api 'com.just.agentweb:agentweb:4.1.3'
+    api 'com.just.agentweb:filechooser:4.1.3'
+//    api 'com.download.library:Downloader:4.1.3'
 }

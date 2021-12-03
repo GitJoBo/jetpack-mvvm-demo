@@ -1,8 +1,4 @@
-package com.jobo.uicommon.data.repository
-
-import com.jobo.uicommon.data.response.ApiPagerResponse
-import com.jobo.uicommon.data.response.UserInfo
-import rxhttp.wrapper.coroutines.Await
+package com.jobo.commonmvvm.data.repository
 
 /**
  * 作者　: hegaojian

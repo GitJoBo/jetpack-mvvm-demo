@@ -1,6 +1,6 @@
 package com.jobo.uicommon.ext
 
-import com.jobo.uicommon.data.annotation.ValueKey
+import com.jobo.commonmvvm.data.annotation.ValueKey
 import com.tencent.mmkv.MMKV
 
 /**

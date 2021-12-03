@@ -1,4 +1,4 @@
-package com.jobo.jetpack_mvvm_demo.app.api
+package com.jobo.commonmvvm.app.api
 
 import com.jobo.commonmvvm.base.appContext
 import com.jobo.commonmvvm.net.interception.LogInterceptor

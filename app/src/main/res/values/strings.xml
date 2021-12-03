@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">jetpack-mvvm-demo</string>
+
+    <string name="bottom_title_read">One</string>
+    <string name="bottom_title_paper">Two</string>
+    <string name="bottom_title_report">Three</string>
+    <string name="bottom_title_user">Four</string>
 </resources>

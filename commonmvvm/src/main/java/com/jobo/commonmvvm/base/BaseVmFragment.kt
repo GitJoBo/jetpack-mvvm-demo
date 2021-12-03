@@ -28,7 +28,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
     /**
      * 界面状态管理者
      */
-    lateinit var uiStatusManger: LoadService<*>
+    lateinit var mUiStatusManger: LoadService<*>
 
     /**
      * 是否是第一次加载
@@ -45,6 +45,9 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
      */
     lateinit var mActivity: AppCompatActivity
 
+    //toolbar 这个可替换成自己想要的标题栏
+    private var mTitleBarView: View? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        return super.onCreateView(inflater, container, savedInstanceState)
         isFirst = true
@@ -55,11 +58,11 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
             dataBindView
         }
         return if (getLoadingView() == null) {
-            uiStatusManger = LoadSir.getDefault().register(rootView) {
+            mUiStatusManger = LoadSir.getDefault().register(rootView) {
                 onLoadRetry()
             }
-            container?.removeView(uiStatusManger.loadLayout)
-            uiStatusManger.loadLayout
+            container?.removeView(mUiStatusManger.loadLayout)
+            mUiStatusManger.loadLayout
         } else {
             rootView
         }
@@ -81,9 +84,16 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
     }
 
     private fun initStatusView(view: View, savedInstanceState: Bundle?) {
+//        mTitleBarView = getTitleBarView()
+//        mTitleBarView?.let {
+//            view.findViewById<LinearLayout>(R.id.baseRootView).addView(it, 0)
+            //是否隐藏标题栏
+//            it.visibleOrGone(showToolBar())
+//        }
+
         getLoadingView()?.let {
             //如果传入了自定义包裹view 将该view注册 做 空 错误 loading 布局处理
-            uiStatusManger = LoadSir.getDefault().register(it) {
+            mUiStatusManger = LoadSir.getDefault().register(it) {
                 onLoadRetry()
             }
         }
@@ -234,7 +244,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
      * 显示 成功状态界面
      */
     override fun showSuccessUi() {
-        uiStatusManger.showSuccess()
+        mUiStatusManger.showSuccess()
     }
 
     /**
@@ -242,21 +252,21 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
      * @param errMessage String
      */
     override fun showErrorUi(errMessage: String) {
-        uiStatusManger.showCallback(BaseErrorCallback::class.java)
+        mUiStatusManger.showCallback(BaseErrorCallback::class.java)
     }
 
     /**
      * 显示 空数据 状态界面
      */
     override fun showEmptyUi() {
-        uiStatusManger.showCallback(BaseEmptyCallback::class.java)
+        mUiStatusManger.showCallback(BaseEmptyCallback::class.java)
     }
 
     /**
      * 显示 loading 状态界面
      */
     override fun showLoadingUi() {
-        uiStatusManger.showCallback(BaseLoadingCallback::class.java)
+        mUiStatusManger.showCallback(BaseLoadingCallback::class.java)
     }
 
     /**
@@ -283,5 +293,12 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
 
     override fun dismissLoading(setting: LoadingDialogEntity) {
         dismissLoadingExt()
+    }
+
+    /**
+     * 是否隐藏 标题栏 默认false不显示
+     */
+    open fun showToolBar(): Boolean {
+        return false
     }
 }

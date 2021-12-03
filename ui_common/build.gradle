@@ -24,6 +24,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures{
+        //如果您计划在 Kotlin 项目中使用数据绑定，您应该应用 kotlin-kapt 插件。
+        dataBinding = true
+        //对“viewBinding”的访问超出其访问权限
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -47,4 +53,6 @@ dependencies {
     api 'com.github.getActivity:TitleBar:9.2'
     //微信开源项目，替代SP
     api 'com.tencent:mmkv-static:1.2.10'
+    //RevealLayout揭示效果布局，可以指定2个子布局，以圆形揭示效果切换选中状态
+    api 'com.github.goweii:RevealLayout:1.1.1'
 }
