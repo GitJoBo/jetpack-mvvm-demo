@@ -57,13 +57,13 @@ fun getAppVersion(context: Context): String {
     return ""
 }
 
-private val activityList = LinkedList<Activity>()
+private val activityList = Stack<Activity>()
 
 /**
  * app当前显示的Activity
  * 注意{@link com.jobo.commonmvvm.utils.KtxActivityLifecycleCallbacks}
  */
-val currentActivity: Activity? get() = if (activityList.isNullOrEmpty()) null else activityList.last
+val currentActivity: Activity? get() = if (activityList.isNullOrEmpty()) null else activityList.lastElement()
 
 /**
  * 添加Activity入栈
@@ -116,5 +116,19 @@ fun finishAllActivity() {
         }
     }
     activityList.clear()
+}
+
+/**
+ * 关闭除栈顶的所有Activity
+ */
+fun finishAllNotTop() {
+    val size = activityList.size - 2
+    if (size >= 0) {
+        for (i in 0..size){
+            if (!activityList[i].isFinishing){
+                activityList[i].finish()
+            }
+        }
+    }
 }
 

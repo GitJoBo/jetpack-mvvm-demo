@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.jobo.commonmvvm.R
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.net.LoadingDialogEntity
@@ -87,7 +89,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
 //        mTitleBarView = getTitleBarView()
 //        mTitleBarView?.let {
 //            view.findViewById<LinearLayout>(R.id.baseRootView).addView(it, 0)
-            //是否隐藏标题栏
+////            是否隐藏标题栏
 //            it.visibleOrGone(showToolBar())
 //        }
 

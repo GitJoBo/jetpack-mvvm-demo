@@ -55,4 +55,6 @@ dependencies {
     api 'com.tencent:mmkv-static:1.2.10'
     //RevealLayout揭示效果布局，可以指定2个子布局，以圆形揭示效果切换选中状态
     api 'com.github.goweii:RevealLayout:1.1.1'
+    //MagicIndicator 是一个可定制、易扩展的页面指示器框架，使用它可极大的简化页面指示器的开发
+    api 'com.github.hackware1993:MagicIndicator:1.7.0'
 }

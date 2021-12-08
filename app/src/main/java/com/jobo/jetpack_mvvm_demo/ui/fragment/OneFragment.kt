@@ -3,16 +3,19 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.ConvertUtils
 import com.gyf.immersionbar.ktx.immersionBar
 import com.jobo.commonmvvm.app.api.NetUrl
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
+import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentOneBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
+import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.OneViewModel
 import com.jobo.uicommon.base.UIBaseFragment
 
@@ -58,14 +61,16 @@ class OneFragment : UIBaseFragment<OneViewModel, FragmentOneBinding>() {
                 }
             }
         }
-        mBind.recyclerView.run {
+        mBind.includedRV.recyclerView.run {
+            addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
             adapter = mArticleAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            this.initFloatBtn(mBind.floatingActionButton)
         }
-        mBind.smartRefreshLayout.refresh {
+        mBind.includedRV.smartRefreshLayout.refresh {
             mViewModel.getList(true)
         }
-        mBind.smartRefreshLayout.loadMore {
+        mBind.includedRV.smartRefreshLayout.loadMore {
             mViewModel.getList(false)
         }
 
@@ -81,7 +86,7 @@ class OneFragment : UIBaseFragment<OneViewModel, FragmentOneBinding>() {
 
     override fun onRequestSuccess() {
         mViewModel.listData.observe(viewLifecycleOwner, {
-            mArticleAdapter.loadListSuccess(it, mBind.smartRefreshLayout)
+            mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
         })
     }
 
@@ -93,7 +98,7 @@ class OneFragment : UIBaseFragment<OneViewModel, FragmentOneBinding>() {
         when (loadStatus.requestCode) {
             NetUrl.HOME_LIST -> {
                 //列表数据请求失败
-                mArticleAdapter.loadListError(loadStatus, mBind.smartRefreshLayout)
+                mArticleAdapter.loadListError(loadStatus, mBind.includedRV.smartRefreshLayout)
             }
         }
     }

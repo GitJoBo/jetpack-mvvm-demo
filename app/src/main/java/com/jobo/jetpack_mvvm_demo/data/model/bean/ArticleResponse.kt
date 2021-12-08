@@ -65,3 +65,33 @@ data class ArticleResponse(
 @SuppressLint("ParcelCreator")
 @Parcelize
 data class TagsResponse(var name: String, var url: String) : Parcelable
+
+/**
+ * 项目分类
+ */
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class ClassifyResponse(var children: List<String> = listOf(),
+                            var courseId: Int = 0,
+                            var id: Int = 0,
+                            var name: String = "",
+                            var order: Int = 0,
+                            var parentChapterId: Int = 0,
+                            var userControlSetTop: Boolean = false,
+                            var visible: Int = 0) : Parcelable
+
+/**
+ *  体系数据
+ * @Author:         hegaojian
+ * @CreateDate:     2019/8/21 15:46
+ */
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class SystemResponse(var children: ArrayList<ClassifyResponse>,
+                          var courseId: Int,
+                          var id: Int,
+                          var name: String,
+                          var order: Int,
+                          var parentChapterId: Int,
+                          var userControlSetTop: Boolean,
+                          var visible: Int) : Parcelable

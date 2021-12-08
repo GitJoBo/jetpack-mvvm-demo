@@ -17,7 +17,7 @@ import java.lang.reflect.Type
  * 描述　: 输入T,输出T,并对code统一判断
  */
 
-@Parser(name = "Response")
+@Parser(name = "Response", wrappers = [ApiPagerResponse::class])
 open class ResponseParser<T> : TypeParser<T> {
     /**
      * 此构造方法适用于任意Class对象，但更多用于带泛型的Class对象，如：List<Student>

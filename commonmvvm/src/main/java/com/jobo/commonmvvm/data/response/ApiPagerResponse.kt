@@ -15,7 +15,9 @@ data class ApiPagerResponse<T>(
     var over: Boolean,
     var pageCount: Int,
     var size: Int,
-    var total: Int
+    var total: Int,
+    var errorCode: Int = -1,
+    var errorMsg: String = ""
 ) : BasePage<T>() {
     override fun getPageData() = datas
     override fun isRefresh() = offset == 0

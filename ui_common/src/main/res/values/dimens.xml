@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="height_48">48dp</dimen>
+
     <dimen name="dp.0">0dp</dimen>
     <dimen name="dp.0.1">0.1dp</dimen>
     <dimen name="dp.1">1dp</dimen>

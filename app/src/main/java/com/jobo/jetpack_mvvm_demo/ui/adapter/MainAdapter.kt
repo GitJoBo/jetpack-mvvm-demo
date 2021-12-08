@@ -9,6 +9,7 @@ import com.jobo.jetpack_mvvm_demo.ui.fragment.OneFragment
 import com.jobo.jetpack_mvvm_demo.ui.fragment.ThreeFragment
 import com.jobo.jetpack_mvvm_demo.ui.fragment.TwoFragment
 
+@Deprecated(message = "使用 ViewPager2.initMain")
 class MainAdapter(fA: FragmentActivity) : FragmentStateAdapter(fA) {
     companion object {
         const val PAGE_ONE = 0
@@ -21,6 +22,7 @@ class MainAdapter(fA: FragmentActivity) : FragmentStateAdapter(fA) {
 
     init {
         fragments.put(PAGE_ONE, OneFragment())
+//        fragments.put(PAGE_ONE, TwoFragment())
         fragments.put(PAGE_TWO, TwoFragment())
         fragments.put(PAGE_THREE, ThreeFragment())
         fragments.put(PAGE_FOUR, FourFragment())

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.jobo.commonmvvm.base.BaseVbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
+import com.jobo.commonmvvm.ext.hideOffKeyboard
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.ActivityWebviewBinding
@@ -22,6 +23,9 @@ class WebViewActivity : UIBaseActivity<WebViewModel, ActivityWebviewBinding>() {
         mViewModel.mUrl = intent.getStringExtra(Config.URL)
         mToolbar.title = mViewModel.mShowTitle
         mToolbar.titleView.setTextColor(getColor(R.color.white))
+        mToolbar.leftView.setOnClickListener {
+            back()
+        }
 
         mPreAgentWeb = AgentWeb.with(this)
             .setAgentWebParent(mBind.fcvContent, LinearLayout.LayoutParams(-1, -1))
@@ -30,6 +34,21 @@ class WebViewActivity : UIBaseActivity<WebViewModel, ActivityWebviewBinding>() {
             .ready()
         //加载网页
         mAgentWeb = mPreAgentWeb?.go(mViewModel.mUrl)
+    }
+
+    override fun onBackPressed() {
+        back()
+    }
+
+    private fun back() {
+        hideOffKeyboard()
+        mAgentWeb?.run {
+            if (webCreator.webView.canGoBack()) {
+                webCreator.webView.goBack()
+            } else {
+                finish()
+            }
+        }
     }
 
     override fun onResume() {

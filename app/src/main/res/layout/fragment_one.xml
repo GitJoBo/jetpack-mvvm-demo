@@ -15,16 +15,40 @@
             android:id="@+id/includedTitle"
             layout="@layout/include_title_bar" />
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/smartRefreshLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+            <include
+                android:id="@+id/includedRV"
+                layout="@layout/include_smart_refresh_rv" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="24dp"
+                android:scaleType="center"
+                android:src="@mipmap/fab_up"
+                android:visibility="invisible"
+                app:elevation="5dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--        <com.scwang.smart.refresh.layout.SmartRefreshLayout-->
+        <!--            android:id="@+id/smartRefreshLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_weight="1">-->
+
+        <!--            <androidx.recyclerview.widget.RecyclerView-->
+        <!--                android:id="@+id/recyclerView"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent" />-->
+        <!--        </com.scwang.smart.refresh.layout.SmartRefreshLayout>-->
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

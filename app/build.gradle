@@ -54,6 +54,10 @@ dependencies {
     implementation "com.github.zhpanvip:BannerViewPager:3.5.2"
     //启动优化异步加载
     api "com.effective.android:anchors:1.1.1"
+    //内存泄漏检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    //官方的
+    implementation 'com.google.android:flexbox:2.0.1'
 
 //    implementation "androidx.core:core-ktx:$CORE_KTX"
 //    implementation "androidx.appcompat:appcompat:$APPCOMPAT"

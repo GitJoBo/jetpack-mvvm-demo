@@ -50,7 +50,8 @@ class InitNetWork : Task(TASK_ID_INIT_NETWORK, true) {
 
     override fun run(name: String) {
         //传入自己的OKHttpClient 并添加了自己的拦截器
-        RxHttpPlugins.init(NetHttpClient.getDefaultOkHttpClient().build())
+        val init = RxHttpPlugins.init(NetHttpClient.getDefaultOkHttpClient().build())
+        init.setDebug(BuildConfig.DEBUG,true)
     }
 }
 
@@ -101,6 +102,8 @@ class InitComm : Task(TASK_ID_INIT_COMM, true) {
             .restartActivity(SplashActivity::class.java) // 重启的activity
             .errorActivity(ErrorActivity::class.java) //发生错误跳转的activity
             .apply()
+        //内存泄漏
+
     }
 }
 

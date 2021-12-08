@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/aet_name"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_48"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/shape_edit"
+                    android:hint="请输入账号"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/aet_pass"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_48"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_edit"
+                    android:hint="请输入密码"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    app:layout_constraintEnd_toEndOf="@id/aet_name"
+                    app:layout_constraintStart_toStartOf="@id/aet_name"
+                    app:layout_constraintTop_toBottomOf="@id/aet_name" />
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_48"
+                    android:layout_marginTop="50dp"
+                    android:text="登录"
+                    android:onClick="onClick"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@id/aet_name"
+                    app:layout_constraintStart_toStartOf="@id/aet_name"
+                    app:layout_constraintTop_toBottomOf="@id/aet_pass" />
+
+                <TextView
+                    android:id="@+id/tv_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_48"
+                    android:gravity="center"
+                    android:text="去注册"
+                    android:onClick="onClick"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="@id/btn_login"
+                    app:layout_constraintTop_toBottomOf="@id/btn_login" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

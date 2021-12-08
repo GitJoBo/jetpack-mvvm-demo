@@ -7,6 +7,7 @@ import com.gyf.immersionbar.ImmersionBar
 import com.hjq.bar.TitleBar
 import com.jobo.commonmvvm.base.BaseDbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
+import com.jobo.commonmvvm.ext.getColorExt
 import com.jobo.commonmvvm.ext.getDrawableExt
 import com.jobo.uicommon.R
 
@@ -23,6 +24,7 @@ abstract class UIBaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseDb
     override fun getTitleBarView(): View? {
         mToolbar = TitleBar(this)
         mToolbar.leftIcon = getDrawableExt(R.drawable.bar_arrows_left_white)
+        mToolbar.titleView.setTextColor(getColorExt(R.color.white))
         mToolbar.leftView.setOnClickListener {
             finish()
         }

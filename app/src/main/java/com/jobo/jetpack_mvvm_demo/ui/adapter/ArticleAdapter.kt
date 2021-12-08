@@ -21,7 +21,7 @@ class ArticleAdapter(data: MutableList<ArticleResponse>?) :
     private var collectAction: (item: ArticleResponse, v: CollectView, position: Int) -> Unit =
         { _: ArticleResponse, _: CollectView, _: Int -> }
 
-    constructor(data: MutableList<ArticleResponse>?, showTag: Boolean) : this(data) {
+    constructor(data: MutableList<ArticleResponse>?, showTag: Boolean = false) : this(data) {
         this.showTag = showTag
     }
 

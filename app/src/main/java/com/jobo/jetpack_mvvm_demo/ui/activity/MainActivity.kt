@@ -3,7 +3,9 @@ package com.jobo.jetpack_mvvm_demo.ui.activity
 import android.os.Bundle
 import com.jobo.commonmvvm.base.BaseDbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
+import com.jobo.commonmvvm.ext.finishAllNotTop
 import com.jobo.jetpack_mvvm_demo.R
+import com.jobo.jetpack_mvvm_demo.app.ext.initMain
 import com.jobo.jetpack_mvvm_demo.databinding.ActivityMainBinding
 import com.jobo.jetpack_mvvm_demo.ui.adapter.MainAdapter
 
@@ -13,9 +15,11 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mBind.mainViewPager2.adapter = MainAdapter(this)
-        mBind.mainViewPager2.offscreenPageLimit = mBind.mainViewPager2.adapter!!.itemCount
-        mBind.mainViewPager2.isUserInputEnabled = false
+        finishAllNotTop()
+//        mBind.mainViewPager2.adapter = MainAdapter(this)
+//        mBind.mainViewPager2.offscreenPageLimit = mBind.mainViewPager2.adapter!!.itemCount
+//        mBind.mainViewPager2.isUserInputEnabled = false
+        mBind.mainViewPager2.initMain(this)
         mBind.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigationOne -> {

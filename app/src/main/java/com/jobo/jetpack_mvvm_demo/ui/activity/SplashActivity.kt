@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.jobo.commonmvvm.base.BaseDbActivity
+import com.jobo.commonmvvm.base.BaseVbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.gone
 import com.jobo.commonmvvm.ext.visible
@@ -22,7 +23,7 @@ import com.zhpan.bannerview.BannerViewPager
  *
  */
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : BaseDbActivity<BaseViewModel, ActivitySplashBinding>() {
+class SplashActivity : BaseVbActivity<BaseViewModel, ActivitySplashBinding>() {
     private val mResList = arrayOf(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
     private lateinit var mViewPager:BannerViewPager<Int>
 

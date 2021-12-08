@@ -16,7 +16,7 @@ object NetHttpClient{
             .connectTimeout(15, TimeUnit.SECONDS)//读取连接超时时间 15秒
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
-            .addInterceptor(HeadInterceptor())//自定义头部参数拦截器
-            .addInterceptor(LogInterceptor())//添加Log拦截器
+//            .addInterceptor(HeadInterceptor())//自定义头部参数拦截器
+//            .addInterceptor(LogInterceptor())//添加Log拦截器
     }
 }
