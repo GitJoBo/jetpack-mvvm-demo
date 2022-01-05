@@ -59,6 +59,10 @@ dependencies {
     //官方的
     implementation 'com.google.android:flexbox:2.0.1'
 
+    // 内存泄漏监测框架：https://github.com/square/leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+//    previewImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+
 //    implementation "androidx.core:core-ktx:$CORE_KTX"
 //    implementation "androidx.appcompat:appcompat:$APPCOMPAT"
 //    implementation "com.google.android.material:material:$MATERIAL"
