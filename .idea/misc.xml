@@ -8,6 +8,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/flow_selector.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/bg_start.xml" value="0.35185185185185186" />
         <entry key="app/src/main/res/drawable/flow_selector.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/item_imgselector.xml" value="0.3287037037037037" />
         <entry key="app/src/main/res/drawable/selector_nav_color.xml" value="0.3416666666666667" />
@@ -19,6 +20,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/activity_system_arr.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/activity_webview.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/flow_layout.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_ask.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_four.xml" value="0.35885416666666664" />
@@ -35,6 +37,7 @@
         <entry key="app/src/main/res/layout/include_title_bar.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/include_titlebar.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/item_article.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/layout/item_custom_view.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/item_project.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/item_splach_banner.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/item_system.xml" value="0.35885416666666664" />

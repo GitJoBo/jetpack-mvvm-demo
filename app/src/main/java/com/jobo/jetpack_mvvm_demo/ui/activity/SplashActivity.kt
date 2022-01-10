@@ -22,6 +22,7 @@ import com.zhpan.bannerview.BannerViewPager
  * @Date: 2021/11/19 10:41 上午
  *
  */
+@Deprecated("Native过大，原因不明")
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseVbActivity<BaseViewModel, ActivitySplashBinding>() {
     private val mResList = arrayOf(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
