@@ -21,3 +21,4 @@ rootProject.name = "jetpack-mvvm-demo"
 include ':app'
 include ':commonmvvm'
 include ':ui_common'
+include ':testapp'

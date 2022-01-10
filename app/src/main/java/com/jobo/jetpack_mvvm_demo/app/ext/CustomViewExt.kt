@@ -1,6 +1,5 @@
 package com.jobo.jetpack_mvvm_demo.app.ext
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.view.View
@@ -17,7 +16,6 @@ import com.jobo.commonmvvm.base.appContext
 import com.jobo.commonmvvm.ext.getColorExt
 import com.jobo.commonmvvm.ext.logD
 import com.jobo.commonmvvm.ext.toHtml
-import com.jobo.commonmvvm.utils.log.KLog
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.ui.fragment.FourFragment
 import com.jobo.jetpack_mvvm_demo.ui.fragment.OneFragment
