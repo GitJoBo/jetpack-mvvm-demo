@@ -37,6 +37,12 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
             }
             true
         }
+
+        test()
+    }
+
+    private fun test() {
+        
     }
 
 }
