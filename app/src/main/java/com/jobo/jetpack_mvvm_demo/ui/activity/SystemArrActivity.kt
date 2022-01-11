@@ -48,7 +48,7 @@ class SystemArrActivity : UIBaseActivity<BaseViewModel, ActivitySystemArrBinding
             mData?.children?.map { it.name }!!
         )
         val postDelayed = mBind.includedMagicindicatorViewpager.viewPager2.postDelayed({
-            mBind.includedMagicindicatorViewpager.viewPager2.currentItem = index
+            mBind.includedMagicindicatorViewpager.viewPager2.setCurrentItem(index, false)
         }, 100)
         postDelayed.logD()
         mData?.children?.forEach {
