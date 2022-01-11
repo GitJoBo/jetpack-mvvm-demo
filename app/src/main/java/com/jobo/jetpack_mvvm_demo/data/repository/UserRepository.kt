@@ -63,8 +63,18 @@ object UserRepository {
     /**
      * 获取体系
      */
-    fun getTree(): Await<MutableList<SystemResponse>> {
+    fun getSystem(): Await<MutableList<SystemResponse>> {
         return RxHttp.get(NetUrl.TREE)
+            .toResponse()
+    }
+
+    /**
+     * 知识体系下的文章数据
+     */
+    fun getSystemChild(cid: Int, pageNo: Int): Await<ApiPagerResponse<ArticleResponse>> {
+        return RxHttp.get(NetUrl.ARTICLE_DATA_UNDER_THE_KNOWLEDGE_SYSTEM)
+            .addPath("page", pageNo)
+            .add("cid", cid)
             .toResponse()
     }
 

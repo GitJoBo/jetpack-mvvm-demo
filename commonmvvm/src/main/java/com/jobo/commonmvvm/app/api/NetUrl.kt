@@ -56,6 +56,11 @@ object NetUrl {
      */
     const val TREE = "tree/json"
 
+    /**
+     * 知识体系下的文章数据
+     */
+    const val ARTICLE_DATA_UNDER_THE_KNOWLEDGE_SYSTEM = "article/list/{page}/json"
+
     const val UPLOAD_URL = "http://t.xinhuo.com/index.php/Api/Pic/uploadPic"
 
     const val DOWNLOAD_URL = "http://update.9158.com/miaolive/Miaolive.apk"

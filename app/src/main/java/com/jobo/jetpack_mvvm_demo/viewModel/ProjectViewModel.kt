@@ -10,7 +10,7 @@ import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 
-class TwoViewModel : BaseViewModel() {
+class ProjectViewModel : BaseViewModel() {
     //页码 首页数据页码从0开始
     private var pageIndex = 0
     var projectTree: MutableLiveData<List<ClassifyResponse>> = MutableLiveData()

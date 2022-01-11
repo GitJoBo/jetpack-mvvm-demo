@@ -48,7 +48,7 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLINX_COROUTINES_CORE"
     //lifecycle
     api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
-    api "androidx.lifecycle:lifecycle-common-java8:2.3.1"
+    api "androidx.lifecycle:lifecycle-common-java8:2.4.0"
     api "androidx.lifecycle:lifecycle-extensions:2.2.0"
     // viewModel
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"

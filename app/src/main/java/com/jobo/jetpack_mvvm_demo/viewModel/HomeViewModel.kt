@@ -10,7 +10,7 @@ import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
 
-class OneViewModel : BaseViewModel() {
+class HomeViewModel : BaseViewModel() {
     //页码 首页数据页码从0开始
     private var pageIndex = 0
     var listData = MutableLiveData<ApiPagerResponse<ArticleResponse>>()

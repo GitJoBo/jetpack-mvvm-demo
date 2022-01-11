@@ -13,45 +13,41 @@ import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActio
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
-import com.jobo.jetpack_mvvm_demo.viewModel.ProjectViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.PlazaViewModel
 
-class ProjectChildFragment : BaseVbFragment<ProjectViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
-    //适配器
-    private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf()) }
+/**
+ * @Desc: 广场
+ * @author: admin wsj
+ * @Date: 2021/12/8 10:36 上午
+ *
+ */
+class PlazaChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
+    private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf(), true) }
 
-    //是否是最新项目
-//    private var isNew = false
-
-    //改项目对应的id
-    private var cid = 0
 
     override fun initView(savedInstanceState: Bundle?) {
-        arguments?.run {
-//            isNew = getBoolean("isNew")
-            cid = getInt("cid")
-        }
         mBind.includedRV.recyclerView.run {
             addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
             adapter = mArticleAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            this.initFloatBtn(mBind.floatingActionButton)
         }
         mBind.includedRV.smartRefreshLayout.refresh {
-            mViewModel.getList(true, cid)
+            mViewModel.getUserArticleList(isRefresh = true, showLoadXml = false)
         }
         mBind.includedRV.smartRefreshLayout.loadMore {
-            mViewModel.getList(false, cid)
+            mViewModel.getUserArticleList(false)
         }
         mArticleAdapter.run {
             setCollectClick { item, v, position ->
                 if (v.isChecked) {
-                    //TODO 取消关注请求
-                    "取消关注请求".logD()
+                    "关注".logD()
                 } else {
-                    //TODO 关注请求
-                    "关注请求".logD()
+                    "取消关注".logD()
                 }
             }
             setOnItemClickListener { adapter, view, position ->
+                "setOnItemClickListener".logD()
                 val item = adapter.getItem(position) as ArticleResponse
                 toStartActivity<WebViewActivity>(requireActivity(), Pair(Config.TITLE, item.title), Pair(Config.URL, item.link))
             }
@@ -65,28 +61,15 @@ class ProjectChildFragment : BaseVbFragment<ProjectViewModel, IncludeSmartRefres
                 }
             }
         }
-        mBind.includedRV.recyclerView.initFloatBtn(mBind.floatingActionButton)
-//        mBind.floatingActionButton.visibility = View.VISIBLE
     }
 
     override fun lazyLoadData() {
-        mViewModel.getList(true, cid, true)
+        mViewModel.getUserArticleList(isRefresh = true, showLoadXml = true)
     }
 
     override fun onRequestSuccess() {
-        mViewModel.projectList.observe(viewLifecycleOwner, {
+        mViewModel.userArticleList.observe(viewLifecycleOwner, {
             mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
         })
-    }
-
-    companion object {
-        fun newInstance(cid: Int, isNew: Boolean): ProjectChildFragment {
-            val args = Bundle()
-            args.putInt("cid", cid)
-            args.putBoolean("isNew", isNew)
-            val fragment = ProjectChildFragment()
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

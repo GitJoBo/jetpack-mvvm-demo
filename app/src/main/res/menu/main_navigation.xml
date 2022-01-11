@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigationOne"
+        android:id="@+id/navigationHome"
         android:checked="true"
         android:icon="@mipmap/ic_launcher"
-        android:title="@string/bottom_title_read" />
+        android:title="首页" />
     <item
-        android:id="@+id/navigationTwo"
+        android:id="@+id/navigationProject"
         android:icon="@mipmap/ic_launcher"
-        android:title="@string/bottom_title_paper" />
+        android:title="项目" />
     <item
-        android:id="@+id/navigationThree"
+        android:id="@+id/navigationSquare"
         android:icon="@mipmap/ic_launcher"
-        android:title="@string/bottom_title_report" />
+        android:title="广场" />
     <item
-        android:id="@+id/navigationFour"
+        android:id="@+id/navigationPublic"
         android:icon="@mipmap/ic_launcher"
-        android:title="@string/bottom_title_user" />
+        android:title="公众号" />
+    <item
+        android:id="@+id/navigationMine"
+        android:icon="@mipmap/ic_launcher"
+        android:title="我的" />
 </menu>

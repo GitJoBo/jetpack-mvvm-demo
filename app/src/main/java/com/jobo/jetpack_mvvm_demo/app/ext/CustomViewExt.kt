@@ -17,10 +17,10 @@ import com.jobo.commonmvvm.ext.getColorExt
 import com.jobo.commonmvvm.ext.logD
 import com.jobo.commonmvvm.ext.toHtml
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.ui.fragment.FourFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.OneFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.ThreeFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.TwoFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.PublicFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.HomeFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.PlazaFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.ProjectFragment
 import com.jobo.jetpack_mvvm_demo.ui.weight.magicindicator.ScaleTransitionPagerTitleView
 import com.jobo.uicommon.ui.view.ViewPagerHelper2
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -48,16 +48,19 @@ fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    OneFragment()
+                    HomeFragment()
                 }
                 1 -> {
-                    TwoFragment()
+                    ProjectFragment()
                 }
                 2 -> {
-                    ThreeFragment()
+                    PlazaFragment()
+                }
+                3 -> {
+                    PublicFragment()
                 }
                 else -> {
-                    FourFragment()
+                    PublicFragment()
                 }
             }
         }
@@ -80,7 +83,7 @@ fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
 fun ViewPager2.init(
     fragment: Fragment,
     fragments: ArrayList<Fragment>,
-    isUserInputEnabled: Boolean = true
+    isUserInputEnabled: Boolean = true,
 ): ViewPager2 {
     //是否可滑动
     this.isUserInputEnabled = isUserInputEnabled
@@ -103,7 +106,7 @@ fun ViewPager2.init(
 fun ViewPager2.init(
     fragmentActivity: FragmentActivity,
     fragments: ArrayList<Fragment>,
-    isUserInputEnabled: Boolean = true
+    isUserInputEnabled: Boolean = true,
 ): ViewPager2 {
     //是否可滑动
     this.isUserInputEnabled = isUserInputEnabled
@@ -126,7 +129,7 @@ fun ViewPager2.init(
 fun MagicIndicator.bindViewPager2(
     viewPager2: ViewPager2,
     titles: List<String> = arrayListOf(),
-    action: (index: Int) -> Unit = {}
+    action: (index: Int) -> Unit = {},
 ): MagicIndicator {
     setBackgroundColor(getColorExt(R.color.colorAccent))
     val commonNavigator = CommonNavigator(appContext)
@@ -173,6 +176,11 @@ fun MagicIndicator.bindViewPager2(
     return this
 }
 
+/**
+ * 绑定滑动监听
+ * @receiver RecyclerView
+ * @param floatbtn FloatingActionButton
+ */
 fun RecyclerView.initFloatBtn(floatbtn: FloatingActionButton) {
     //监听recyclerview滑动到顶部的时候，需要把向上返回顶部的按钮隐藏
     addOnScrollListener(object : RecyclerView.OnScrollListener() {

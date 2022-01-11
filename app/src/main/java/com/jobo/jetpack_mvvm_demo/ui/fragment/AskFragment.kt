@@ -9,12 +9,11 @@ import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.databinding.FragmentAskBinding
 import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActionButtonBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
-import com.jobo.jetpack_mvvm_demo.viewModel.ThreeViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.PlazaViewModel
 
 /**
  * @Desc: 广场-每日一问
@@ -22,7 +21,7 @@ import com.jobo.jetpack_mvvm_demo.viewModel.ThreeViewModel
  * @Date: 2021/12/8 10:42 上午
  *
  */
-class AskFragment : BaseVbFragment<ThreeViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
+class AskFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
     private val mArticleAdapter by lazy { ArticleAdapter(arrayListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {

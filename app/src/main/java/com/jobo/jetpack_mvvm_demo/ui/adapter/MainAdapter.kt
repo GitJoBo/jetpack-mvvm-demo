@@ -4,10 +4,10 @@ import android.util.SparseArray
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jobo.jetpack_mvvm_demo.ui.fragment.FourFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.OneFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.ThreeFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.TwoFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.PublicFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.HomeFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.PlazaFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.ProjectFragment
 
 @Deprecated(message = "使用 ViewPager2.initMain")
 class MainAdapter(fA: FragmentActivity) : FragmentStateAdapter(fA) {
@@ -21,11 +21,11 @@ class MainAdapter(fA: FragmentActivity) : FragmentStateAdapter(fA) {
     private val fragments: SparseArray<Fragment> = SparseArray()
 
     init {
-        fragments.put(PAGE_ONE, OneFragment())
+        fragments.put(PAGE_ONE, HomeFragment())
 //        fragments.put(PAGE_ONE, TwoFragment())
-        fragments.put(PAGE_TWO, TwoFragment())
-        fragments.put(PAGE_THREE, ThreeFragment())
-        fragments.put(PAGE_FOUR, FourFragment())
+        fragments.put(PAGE_TWO, ProjectFragment())
+        fragments.put(PAGE_THREE, PlazaFragment())
+        fragments.put(PAGE_FOUR, PublicFragment())
     }
 
     override fun getItemCount(): Int {

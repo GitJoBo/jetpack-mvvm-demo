@@ -7,7 +7,6 @@ import com.jobo.commonmvvm.ext.finishAllNotTop
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initMain
 import com.jobo.jetpack_mvvm_demo.databinding.ActivityMainBinding
-import com.jobo.jetpack_mvvm_demo.ui.adapter.MainAdapter
 
 class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
     override fun showToolBar(): Boolean {
@@ -22,17 +21,20 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
         mBind.mainViewPager2.initMain(this)
         mBind.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigationOne -> {
+                R.id.navigationHome -> {
                     mBind.mainViewPager2.setCurrentItem(0, false)
                 }
-                R.id.navigationTwo -> {
+                R.id.navigationProject -> {
                     mBind.mainViewPager2.setCurrentItem(1, false)
                 }
-                R.id.navigationThree -> {
+                R.id.navigationSquare -> {
                     mBind.mainViewPager2.setCurrentItem(2, false)
                 }
-                R.id.navigationFour -> {
+                R.id.navigationPublic -> {
                     mBind.mainViewPager2.setCurrentItem(3, false)
+                }
+                R.id.navigationMine -> {
+                    mBind.mainViewPager2.setCurrentItem(4, false)
                 }
             }
             true
@@ -42,7 +44,7 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
     }
 
     private fun test() {
-        
+
     }
 
 }

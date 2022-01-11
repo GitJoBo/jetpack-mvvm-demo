@@ -1,7 +1,6 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
@@ -12,9 +11,8 @@ import com.jobo.commonmvvm.ext.getColorExt
 import com.jobo.commonmvvm.ext.logD
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.init
-import com.jobo.jetpack_mvvm_demo.databinding.FragmentTwoBinding
-import com.jobo.jetpack_mvvm_demo.viewModel.TwoViewModel
-import com.jobo.uicommon.base.UIBaseFragment
+import com.jobo.jetpack_mvvm_demo.databinding.FragmentProjectBinding
+import com.jobo.jetpack_mvvm_demo.viewModel.ProjectViewModel
 import com.jobo.uicommon.ui.view.ColorFlipPagerTitleView
 import com.jobo.uicommon.ui.view.ViewPagerHelper2
 import net.lucode.hackware.magicindicator.buildins.UIUtil
@@ -31,7 +29,7 @@ import java.util.*
  * @Date: 2021/12/6 2:18 下午
  *
  */
-class TwoFragment : BaseVbFragment<TwoViewModel, FragmentTwoBinding>() {
+class ProjectFragment : BaseVbFragment<ProjectViewModel, FragmentProjectBinding>() {
     //fragment集合
     var mFragments: ArrayList<Fragment> = arrayListOf()
 

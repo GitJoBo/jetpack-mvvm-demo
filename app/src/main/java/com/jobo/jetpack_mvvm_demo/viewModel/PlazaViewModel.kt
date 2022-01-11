@@ -6,12 +6,10 @@ import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
-import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
 
-class ThreeViewModel : BaseViewModel() {
+class PlazaViewModel : BaseViewModel() {
     private var paeNo = 0
 
     /**
@@ -22,7 +20,12 @@ class ThreeViewModel : BaseViewModel() {
     /**
      * 体系
      */
-    val tree = MutableLiveData<MutableList<SystemResponse>>()
+    val system = MutableLiveData<MutableList<SystemResponse>>()
+
+    /**
+     * 知识体系下的文章数据
+     */
+    val systemChild = MutableLiveData<ApiPagerResponse<ArticleResponse>>()
 
     /**
      * 获取广场列表
@@ -64,7 +67,23 @@ class ThreeViewModel : BaseViewModel() {
     fun getTree(showLoadXml: Boolean = false) {
         rxHttpRequest {
             onRequest = {
-                tree.value = UserRepository.getTree().await()
+                system.value = UserRepository.getSystem().await()
+            }
+            loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
+        }
+    }
+
+    /**
+     * 获取体系子栏目列表数据
+     */
+    fun getSystemChildData(cid: Int = -1, isRefresh: Boolean = false, showLoadXml: Boolean = false) {
+        if (isRefresh) {
+            paeNo = 0
+        }
+        rxHttpRequest {
+            onRequest = {
+                systemChild.value = UserRepository.getSystemChild(cid, paeNo).await()
+                paeNo++
             }
             loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
         }

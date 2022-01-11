@@ -12,11 +12,11 @@ import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.databinding.FragmentOneBinding
+import com.jobo.jetpack_mvvm_demo.databinding.FragmentHomeBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
-import com.jobo.jetpack_mvvm_demo.viewModel.OneViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.HomeViewModel
 import com.jobo.uicommon.base.UIBaseFragment
 
 /**
@@ -25,7 +25,7 @@ import com.jobo.uicommon.base.UIBaseFragment
  * @Date: 2021/12/2 10:03 上午
  *
  */
-class OneFragment : UIBaseFragment<OneViewModel, FragmentOneBinding>() {
+class HomeFragment : UIBaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     //适配器
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf(), true) }
@@ -111,8 +111,8 @@ class OneFragment : UIBaseFragment<OneViewModel, FragmentOneBinding>() {
     }
 
     companion object {
-        fun newInstance(args: Bundle): OneFragment {
-            val fragment = OneFragment()
+        fun newInstance(args: Bundle): HomeFragment {
+            val fragment = HomeFragment()
             fragment.arguments = args
             return fragment
         }
