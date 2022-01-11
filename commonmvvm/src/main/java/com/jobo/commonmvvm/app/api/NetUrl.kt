@@ -57,9 +57,25 @@ object NetUrl {
     const val TREE = "tree/json"
 
     /**
+     * 获取导航数据
+     */
+    const val NAVI = "navi/json"
+
+    /**
      * 知识体系下的文章数据
      */
     const val ARTICLE_DATA_UNDER_THE_KNOWLEDGE_SYSTEM = "article/list/{page}/json"
+
+    /**
+     * 公众号分类
+     */
+    const val WX_ARTICLE = "wxarticle/chapters/json"
+
+    /**
+     * 公众号列表
+     */
+    const val WX_ARTICLE_LIST = "wxarticle/list/{id}/{page}/json"
+
 
     const val UPLOAD_URL = "http://t.xinhuo.com/index.php/Api/Pic/uploadPic"
 

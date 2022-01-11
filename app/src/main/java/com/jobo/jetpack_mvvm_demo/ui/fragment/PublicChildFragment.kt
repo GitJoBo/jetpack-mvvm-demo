@@ -3,33 +3,37 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
-import com.jobo.commonmvvm.app.api.NetUrl
 import com.jobo.commonmvvm.base.BaseVbFragment
-import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.*
-import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
+import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
+import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvBinding
 import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActionButtonBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
-import com.jobo.jetpack_mvvm_demo.viewModel.PlazaViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.PublicViewModel
 
-class SystemChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
-    private var mCId = -1
+class PublicChildFragment : BaseVbFragment<PublicViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
+    //改项目对应的id
+    private var mCid = 0
 
     //适配器
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
         arguments?.let {
-            mCId = it.getInt("cid")
+            mCid = it.getInt("cid")
+        }
+        mBind.includedRV.recyclerView.run {
+            addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
+            adapter = mArticleAdapter
+            layoutManager = LinearLayoutManager(requireContext())
         }
         mArticleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                "setOnItemClickListener".logD()
                 val item = adapter.getItem(position) as ArticleResponse
                 toStartActivity<WebViewActivity>(requireActivity(), Pair(Config.TITLE, item.title), Pair(Config.URL, item.link))
             }
@@ -43,56 +47,32 @@ class SystemChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRv
                 }
             }
         }
-
-        mBind.includedRV.recyclerView.run {
-            addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = mArticleAdapter
-        }
-
+        mBind.includedRV.recyclerView.initFloatBtn(mBind.floatingActionButton)
         mBind.includedRV.smartRefreshLayout.refresh {
-            mViewModel.getSystemChildData(mCId, true)
+            mViewModel.getList(mCid, true)
         }
         mBind.includedRV.smartRefreshLayout.loadMore {
-            mViewModel.getSystemChildData(mCId)
+            mViewModel.getList(mCid, false)
         }
-
-        onLoadRetry()
     }
 
-    override fun onLoadRetry() {
-        mViewModel.getSystemChildData(mCId, isRefresh = true, showLoadXml = true)
+    override fun lazyLoadData() {
+        mViewModel.getList(mCid, true, true)
     }
 
     override fun onRequestSuccess() {
-        mViewModel.systemChild.observe(viewLifecycleOwner,{
+        mViewModel.wxArticleList.observe(viewLifecycleOwner,{
             mArticleAdapter.loadListSuccess(it,mBind.includedRV.smartRefreshLayout)
         })
     }
 
-    override fun onRequestError(loadStatus: LoadStatusEntity) {
-        super.onRequestError(loadStatus)
-        when (loadStatus.requestCode) {
-            NetUrl.ARTICLE_DATA_UNDER_THE_KNOWLEDGE_SYSTEM -> {
-                //列表数据请求失败
-                mArticleAdapter.loadListError(loadStatus, mBind.includedRV.smartRefreshLayout)
-            }
-        }
-    }
-
     companion object {
-//        fun newInstance(args: Bundle): SystemChildFragment {
-//            val fragment = SystemChildFragment()
-//            fragment.arguments = args
-//            return fragment
-//        }
-
-        fun newInstance(cid: Int): SystemChildFragment {
-            return SystemChildFragment().apply {
-                arguments = Bundle().apply {
-                    putInt("cid", cid)
-                }
-            }
+        fun newInstance(cid: Int): PublicChildFragment {
+            val args = Bundle()
+            args.putInt("cid", cid)
+            val fragment = PublicChildFragment()
+            fragment.arguments = args
+            return fragment
         }
     }
 }

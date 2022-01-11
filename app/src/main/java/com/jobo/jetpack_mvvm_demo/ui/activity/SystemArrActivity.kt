@@ -13,7 +13,7 @@ import com.jobo.jetpack_mvvm_demo.app.ext.init
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
 import com.jobo.jetpack_mvvm_demo.databinding.ActivitySystemArrBinding
 import com.jobo.jetpack_mvvm_demo.ui.fragment.SystemChildFragment
-import com.jobo.uicommon.base.UIBaseActivity
+import com.jobo.uicommon.base.UIDBBaseActivity
 
 /**
  * @Desc: 体系-分类列表
@@ -21,7 +21,7 @@ import com.jobo.uicommon.base.UIBaseActivity
  * @Date: 2021/12/8 5:18 下午
  *
  */
-class SystemArrActivity : UIBaseActivity<BaseViewModel, ActivitySystemArrBinding>() {
+class SystemArrActivity : UIDBBaseActivity<BaseViewModel, ActivitySystemArrBinding>() {
     var mData: SystemResponse? = null
     var index = 0
     private val mFragments = arrayListOf<Fragment>()

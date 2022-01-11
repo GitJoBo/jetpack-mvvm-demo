@@ -18,7 +18,7 @@ import com.jobo.uicommon.R
  * @Date: 2021/11/17 5:48 下午
  *
  */
-abstract class UIBaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseDbActivity<VM, DB>() {
+abstract class UIDBBaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseDbActivity<VM, DB>() {
     lateinit var mToolbar: TitleBar
 
     override fun getTitleBarView(): View? {

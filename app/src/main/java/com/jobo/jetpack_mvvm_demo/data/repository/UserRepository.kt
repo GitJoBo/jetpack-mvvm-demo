@@ -4,6 +4,7 @@ import com.jobo.commonmvvm.app.api.NetUrl
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
 import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
 import rxhttp.wrapper.coroutines.Await
@@ -75,6 +76,32 @@ object UserRepository {
         return RxHttp.get(NetUrl.ARTICLE_DATA_UNDER_THE_KNOWLEDGE_SYSTEM)
             .addPath("page", pageNo)
             .add("cid", cid)
+            .toResponse()
+    }
+
+    /**
+     * 获取导航数据
+     */
+    fun getNavi(): Await<MutableList<NavigationResponse>> {
+        return RxHttp.get(NetUrl.NAVI)
+            .toResponse()
+    }
+
+    /**
+     * 获取公众号分类
+     */
+    fun getWxArticle(): Await<ArrayList<ClassifyResponse>> {
+        return RxHttp.get(NetUrl.WX_ARTICLE)
+            .toResponse()
+    }
+
+    /**
+     * 获取公众好列表
+     */
+    fun getWxArticleList(id: Int, pageNo: Int): Await<ApiPagerResponse<ArticleResponse>> {
+        return RxHttp.get(NetUrl.WX_ARTICLE_LIST)
+            .addPath("id", id)
+            .addPath("page", pageNo)
             .toResponse()
     }
 

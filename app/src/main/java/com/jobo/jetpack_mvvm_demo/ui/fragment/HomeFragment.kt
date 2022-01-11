@@ -17,7 +17,7 @@ import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.HomeViewModel
-import com.jobo.uicommon.base.UIBaseFragment
+import com.jobo.uicommon.base.UIDBBaseFragment
 
 /**
  * @Desc: 首页
@@ -25,7 +25,7 @@ import com.jobo.uicommon.base.UIBaseFragment
  * @Date: 2021/12/2 10:03 上午
  *
  */
-class HomeFragment : UIBaseFragment<HomeViewModel, FragmentHomeBinding>() {
+class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     //适配器
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf(), true) }

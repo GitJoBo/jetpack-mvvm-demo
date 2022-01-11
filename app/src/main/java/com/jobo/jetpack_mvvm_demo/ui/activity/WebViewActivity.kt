@@ -1,19 +1,16 @@
 package com.jobo.jetpack_mvvm_demo.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
-import com.jobo.commonmvvm.base.BaseVbActivity
-import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.hideOffKeyboard
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.ActivityWebviewBinding
 import com.jobo.jetpack_mvvm_demo.viewModel.WebViewModel
-import com.jobo.uicommon.base.UIBaseActivity
+import com.jobo.uicommon.base.UIDBBaseActivity
 import com.just.agentweb.AgentWeb
 
-class WebViewActivity : UIBaseActivity<WebViewModel, ActivityWebviewBinding>() {
+class WebViewActivity : UIDBBaseActivity<WebViewModel, ActivityWebviewBinding>() {
     private var mAgentWeb: AgentWeb? = null
 
     private var mPreAgentWeb: AgentWeb.PreAgentWeb? = null

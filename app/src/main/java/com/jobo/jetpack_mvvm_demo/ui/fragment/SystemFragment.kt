@@ -31,7 +31,7 @@ class SystemFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloat
             initFloatBtn(mBind.floatingActionButton)
         }
         mBind.includedRV.smartRefreshLayout.refresh {
-            mViewModel.getTree()
+            mViewModel.getSystem()
         }
         mBind.includedRV.smartRefreshLayout.setEnableLoadMore(false)
         mSystemAdapter.run {
@@ -50,7 +50,7 @@ class SystemFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloat
     }
 
     override fun lazyLoadData() {
-        mViewModel.getTree(true)
+        mViewModel.getSystem(true)
     }
 
     override fun onRequestSuccess() {

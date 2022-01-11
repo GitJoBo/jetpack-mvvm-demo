@@ -43,7 +43,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
  */
 fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
     isUserInputEnabled = false
-    offscreenPageLimit = 4
+    offscreenPageLimit = 5
     adapter = object : FragmentStateAdapter(activity) {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
@@ -66,7 +66,7 @@ fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return 5
         }
     }
     return this

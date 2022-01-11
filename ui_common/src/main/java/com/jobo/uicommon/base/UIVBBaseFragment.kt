@@ -1,13 +1,9 @@
 package com.jobo.uicommon.base
 
-import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.hjq.bar.TitleBar
-import com.jobo.commonmvvm.base.BaseDbFragment
+import androidx.viewbinding.ViewBinding
+import com.jobo.commonmvvm.base.BaseVbFragment
 import com.jobo.commonmvvm.base.BaseViewModel
-import com.jobo.commonmvvm.ext.getColorExt
-import com.jobo.commonmvvm.ext.getDrawableExt
-import com.jobo.uicommon.R
 
 /**
  * @Desc: 使用ViewDataBinding 需要自定义修改什么就重写什么 具体方法可以 搜索 BaseIView 查看
@@ -16,7 +12,7 @@ import com.jobo.uicommon.R
  * @Date: 2021/11/17 5:48 下午
  *
  */
-abstract class UIBaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseDbFragment<VM, DB>() {
+abstract class UIVBBaseFragment<VM : BaseViewModel, VB : ViewBinding> : BaseVbFragment<VM, VB>() {
 //    lateinit var mToolbar: TitleBar
 //
 //    override fun getTitleBarView(): View? {

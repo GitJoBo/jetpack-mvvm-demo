@@ -6,6 +6,7 @@ import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 
@@ -26,6 +27,11 @@ class PlazaViewModel : BaseViewModel() {
      * 知识体系下的文章数据
      */
     val systemChild = MutableLiveData<ApiPagerResponse<ArticleResponse>>()
+
+    /**
+     * 导航
+     */
+    val navi = MutableLiveData<MutableList<NavigationResponse>>()
 
     /**
      * 获取广场列表
@@ -64,7 +70,7 @@ class PlazaViewModel : BaseViewModel() {
     /**
      * 获取体系列表
      */
-    fun getTree(showLoadXml: Boolean = false) {
+    fun getSystem(showLoadXml: Boolean = false) {
         rxHttpRequest {
             onRequest = {
                 system.value = UserRepository.getSystem().await()
@@ -84,6 +90,18 @@ class PlazaViewModel : BaseViewModel() {
             onRequest = {
                 systemChild.value = UserRepository.getSystemChild(cid, paeNo).await()
                 paeNo++
+            }
+            loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
+        }
+    }
+
+    /**
+     * 获取导航数据
+     */
+    fun getNavi(showLoadXml: Boolean = false) {
+        rxHttpRequest {
+            onRequest = {
+                navi.value = UserRepository.getNavi().await()
             }
             loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
         }
