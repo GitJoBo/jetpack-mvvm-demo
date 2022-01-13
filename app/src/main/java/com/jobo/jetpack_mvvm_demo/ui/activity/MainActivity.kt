@@ -33,7 +33,7 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
                 R.id.navigationPublic -> {
                     mBind.mainViewPager2.setCurrentItem(3, false)
                 }
-                R.id.navigationMine -> {
+                R.id.navigationMe -> {
                     mBind.mainViewPager2.setCurrentItem(4, false)
                 }
             }

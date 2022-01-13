@@ -76,6 +76,11 @@ object NetUrl {
      */
     const val WX_ARTICLE_LIST = "wxarticle/list/{id}/{page}/json"
 
+    /**
+     * 获取当前账户的个人积分
+     */
+    const val ME_INTEGRAL = "lg/coin/userinfo/json"
+
 
     const val UPLOAD_URL = "http://t.xinhuo.com/index.php/Api/Pic/uploadPic"
 

@@ -18,7 +18,7 @@
         android:icon="@mipmap/ic_launcher"
         android:title="公众号" />
     <item
-        android:id="@+id/navigationMine"
+        android:id="@+id/navigationMe"
         android:icon="@mipmap/ic_launcher"
         android:title="我的" />
 </menu>

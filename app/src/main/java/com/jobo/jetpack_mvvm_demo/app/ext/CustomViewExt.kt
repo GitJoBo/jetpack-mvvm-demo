@@ -17,10 +17,7 @@ import com.jobo.commonmvvm.ext.getColorExt
 import com.jobo.commonmvvm.ext.logD
 import com.jobo.commonmvvm.ext.toHtml
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.ui.fragment.PublicFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.HomeFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.PlazaFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.ProjectFragment
+import com.jobo.jetpack_mvvm_demo.ui.fragment.*
 import com.jobo.jetpack_mvvm_demo.ui.weight.magicindicator.ScaleTransitionPagerTitleView
 import com.jobo.uicommon.ui.view.ViewPagerHelper2
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -60,7 +57,7 @@ fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
                     PublicFragment()
                 }
                 else -> {
-                    PublicFragment()
+                    MeFragment()
                 }
             }
         }
