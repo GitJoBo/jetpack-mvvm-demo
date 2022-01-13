@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Point
 import android.graphics.Rect
+import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.WindowMetrics
 import com.jobo.commonmvvm.base.appContext
 
 /**
@@ -33,7 +35,7 @@ fun dp2px(dpValue: Float): Int {
     ).toInt()
 }
 
-val Float.dp get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this, appContext.resources.displayMetrics)
+val Float.dp get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, appContext.resources.displayMetrics)
 
 val Int.dp get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), appContext.resources.displayMetrics).toInt()
 
@@ -64,20 +66,31 @@ fun px2sp(pxVal: Float) = pxVal / appContext.resources.displayMetrics.scaledDens
  * 获取屏幕宽
  */
 fun getScreenWidth(): Int {
-    val metric = DisplayMetrics()
-    (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
-        .getMetrics(metric)
-    return metric.widthPixels
+    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        val metric = DisplayMetrics()
+        (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+            .getMetrics(metric)
+        metric.widthPixels
+    } else {
+//        appContext.display?.width
+//        WindowMetrics.getBounds.width()//Unresolved reference: getBounds
+        (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics.bounds.width()
+    }
+
 }
 
 /**
  * 获取屏幕高，包含状态栏，但不包含虚拟按键，如1920屏幕只有1794
  */
 fun getScreenHeight(): Int {
-    val metric = DisplayMetrics()
-    (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
-        .getMetrics(metric)
-    return metric.heightPixels
+    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        val metric = DisplayMetrics()
+        (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+            .getMetrics(metric)
+        metric.heightPixels
+    } else {
+        (appContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics.bounds.height()
+    }
 }
 
 /**
