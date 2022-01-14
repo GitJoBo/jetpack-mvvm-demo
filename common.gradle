@@ -30,7 +30,9 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+//        jvmTarget = '1.8'
+        //'compileReleaseJavaWithJavac' task (current target is 11) and 'compileReleaseKotlin' task (current target is 1.8) jvm target compatibility should be set to the
+        jvmTarget = '11'
     }
 
     // 设置存放 so 文件的目录
