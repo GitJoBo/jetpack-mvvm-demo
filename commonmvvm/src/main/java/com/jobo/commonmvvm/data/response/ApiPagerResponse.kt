@@ -1,7 +1,5 @@
 package com.jobo.commonmvvm.data.response
 
-import com.jobo.commonmvvm.entity.BasePage
-
 
 /**
  * 作者　: hegaojian

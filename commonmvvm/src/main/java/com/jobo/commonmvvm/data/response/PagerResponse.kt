@@ -1,4 +1,4 @@
-package com.jobo.commonmvvm.entity
+package com.jobo.commonmvvm.data.response
 
 /**
  * 分页帮助类

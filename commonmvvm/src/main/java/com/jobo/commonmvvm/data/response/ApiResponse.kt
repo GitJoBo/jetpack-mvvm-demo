@@ -1,4 +1,4 @@
-package com.zhixinhuixue.zsyte.xxx.data.response
+package com.jobo.commonmvvm.data.response
 
 /**
  * 时间　: 2020/11/18

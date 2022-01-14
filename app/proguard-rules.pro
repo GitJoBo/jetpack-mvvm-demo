@@ -16,8 +16,87 @@
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
+-optimizationpasses 5
+
+-dontusemixedcaseclassnames
+
+-dontskipnonpubliclibraryclasses
+
+-dontskipnonpubliclibraryclassmembers
+
+-dontpreverify
+
+-verbose
+-printmapping priguardMapping.txt
+
+-optimizations !code/simplification/artithmetic,!field/*,!class/merging/*
+
+# 不要删除无用代码
+-dontshrink
+
+# 不混淆泛型
+-keepattributes Signature
+
+# 不混淆注解类
+-keepattributes *Annotation*
+
+# 不混淆本地方法
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# 不混淆 Activity 在 XML 布局所设置的 onClick 属性值
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+
+################common###############
+
+ #实体类不参与混淆
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keepnames class * implements java.io.Serializable
+-keepattributes Signature
+-keep class **.R$* {*;}
+-ignorewarnings
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+-keepclasseswithmembernames class * { # 保持native方法不被混淆
+    native <methods>;
+}
+
+-keepclassmembers enum * {  # 使用enum类型时需要注意避免以下两个方法混淆，因为enum类的特殊性，以下两个方法会被反射调用，
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+################support###############
+-keep class android.support.** { *; }
+-keep interface android.support.** { *; }
+-dontwarn android.support.**
+
+-keep class com.google.android.material.** {*;}
+-keep class androidx.** {*;}
+-keep public class * extends androidx.**
+-keep interface androidx.** {*;}
+-dontwarn com.google.android.material.**
+-dontnote com.google.android.material.**
+-dontwarn androidx.**
+
+#自定义view
+# 保留自定义控件(继承自View)不能被混淆
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(***);
+    *** get* ();
+}
+
 #-renamesourcefileattribute SourceFile
 -keepattributes Signature
 
@@ -36,13 +115,13 @@
 -dontwarn javax.annotation.**
 
 # A resource is loaded with a relative path so the package of this class must be preserved.
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+#-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
--dontwarn okhttp3.internal.platform.ConscryptPlatform
+#-dontwarn okhttp3.internal.platform.ConscryptPlatform
 
 #fastjson混淆
 -keepattributes Signature
@@ -51,25 +130,44 @@
 -keep class com.alibaba.fastjson.**{*; }
 -keep public class com.ninstarscf.ld.model.entity.**{*;}
 
-##Gson混淆
-# 在处理字段时，Gson使用存储在类文件中的泛型类型信息。 Proguard默认会删除此类信息，因此请对其进行配置以保留所有信息。
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
 -keepattributes Signature
-# 用于使用GSON @Expose批注
+
+# For using GSON @Expose annotation
 -keepattributes *Annotation*
+
 # Gson specific classes
 -dontwarn sun.misc.**
--keep class com.google.gson.stream.** { *; }
-# 将下面com.google.gson.examples.android.model 换成你自己项目的实体类的包名
--keep class com.google.gson.examples.android.model.** { <fields>; }
--keep class com.bizeng.lh.**{*;}
-#防止proguard从TypeAdapterFactory，JsonSerializer，JsonDeserializer实例中剥离接口信息（因此可以在@JsonAdapter中使用它们）
+#-keep class com.google.gson.stream.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * extends com.google.gson.TypeAdapter
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
-#防止R8将数据对象好友始终保留为null
+
+# Prevent R8 from leaving Data object members always null
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
 }
+
+# Retain generic signatures of TypeToken and its subclasses with R8 version 3.0 and higher.
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+
+# 所有GSON生成的对象类不能被混淆 将下面com.google.gson.examples.android.model 换成你自己项目的实体类的包名
+#-keep class com.jobo.jetpack_mvvm_demo.data.model.** { <fields>; }
+-keep class com.jobo.jetpack_mvvm_demo.data.model.bean.**{<fields>;}
+-keep class com.jobo.jetpack_mvvm_demo.data.model.**{<fields>;}
+-keep class com.jobo.commonmvvm.data.response.**{<fields>;}
+#-keep class com.jobo.commonmvvm.app.api.ResponseParser{<fields>;}
+#-keep class com.jobo.commonmvvm.net.LoadingDialogEntity{<fields>;}
+#-keep class com.jobo.commonmvvm.net.LoadStatusEntity{<fields>;}
+##---------------End: proguard configuration for Gson  ----------
+
 
 # 使用了以下两个 EventBus 之一的话，加入对应规则
 -keep class org.greenrobot.eventbus.EventBus {*;}
@@ -87,16 +185,22 @@
       publicstatic**[] values();
       publicstatic** valueOf(java.lang.String);
 }
--keep public class com.bizeng.lh.R$*{
+-keep public class com.jobo.jetpack_mvvm_demo.R$*{
 public static final int *;
 }
 
 # 使用了 uix 的时候加入以下规则
 -keep class me.shouheng.uix.common.UIX {*;}
 
-# 如果使用了 ViewBinding 则需要添加以下规则，并将包名替换为自己应用的包名
--keep class com.bizeng.bz.databinding.** {
+## 如果使用了 ViewBinding 则需要添加以下规则，并将包名替换为自己应用的包名
+-keep class com.jobo.jetpack_mvvm_demo.databinding.** {
     public static * inflate(android.view.LayoutInflater);
+}
+#viewBinding
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static * inflate(android.view.LayoutInflater);
+  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+  public static * bind(android.view.View);
 }
 
 #liveeventbus
@@ -163,3 +267,37 @@ public static final int *;
 -keep class com.ta.utdid2.** { *;}
 -keep class com.ut.device.** { *;}
 -keep class com.hjq.bar.** {*;}
+
+################glide###############
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+################retrofit###############
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
+-dontwarn com.kingja.loadsir.**
+-keep class com.kingja.loadsir.** {*;}
+
+# 不混淆 WebView 设置的 JS 接口的方法名
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+#-keep class com.jobo.jetpack_mvvm_demo.**{*;}
+#-keep class com.jobo.commonmvvm.**{*;}
+#-keep class com.jobo.uicommon.**{*;}

@@ -2,12 +2,11 @@ package com.jobo.commonmvvm.app.api
 
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.net.BaseNetConstant
-import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
+import com.jobo.commonmvvm.data.response.ApiResponse
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.exception.ParseException
 import rxhttp.wrapper.parse.TypeParser
 import rxhttp.wrapper.utils.convertTo
-import rxhttp.wrapper.utils.convertToParameterized
 import java.lang.reflect.Type
 
 /**

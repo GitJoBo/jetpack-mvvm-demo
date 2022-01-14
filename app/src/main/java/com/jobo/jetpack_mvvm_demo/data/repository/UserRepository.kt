@@ -6,7 +6,6 @@ import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationResponse
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
-import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
 import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse

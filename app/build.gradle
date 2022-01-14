@@ -10,6 +10,7 @@ android {
 //    compileSdk project.ANDROID_COMPILE_SDK_VERSION as int
 
     defaultConfig {
+        // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
         applicationId ANDROID_APPLICATION_ID
 //        minSdk ANDROID_MIN_SDK_VERSION as int
 //        targetSdk ANDROID_TARGET_SDK_VERSION as int
@@ -17,9 +18,6 @@ android {
 //        versionName ANDROID_VERSION_NAME
 
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
-        applicationId 'com.hjq.demo'
 
         // 仅保留中文语种的资源
         resConfigs 'zh'
@@ -59,11 +57,11 @@ android {
             debuggable true
             jniDebuggable true
             // 压缩对齐开关
-            zipAlignEnabled false
+            zipAlignEnabled true
             // 移除无用的资源
-            shrinkResources false
+            shrinkResources true
             // 代码混淆开关
-            minifyEnabled false
+            minifyEnabled true
             // 签名信息配置
             signingConfig signingConfigs.config
             // 添加清单占位符
@@ -90,11 +88,11 @@ android {
             debuggable false
             jniDebuggable false
             // 压缩对齐开关
-            zipAlignEnabled false
+            zipAlignEnabled true
             // 移除无用的资源
-            shrinkResources false
+            shrinkResources true
             // 代码混淆开关
-            minifyEnabled false
+            minifyEnabled true
             // 签名信息配置
             signingConfig signingConfigs.config
             // 添加清单占位符
@@ -123,24 +121,24 @@ android {
 //        }
     }
 
-    buildFeatures{
-        //如果您计划在 Kotlin 项目中使用数据绑定，您应该应用 kotlin-kapt 插件。
-        dataBinding = true
-        //对“viewBinding”的访问超出其访问权限
-        viewBinding = true
-    }
+//    buildFeatures{
+//        //如果您计划在 Kotlin 项目中使用数据绑定，您应该应用 kotlin-kapt 插件。
+//        dataBinding = true
+//        //对“viewBinding”的访问超出其访问权限
+//        viewBinding = true
+//    }
 //    compileOptions {
 //        sourceCompatibility JavaVersion.VERSION_11
 //        targetCompatibility JavaVersion.VERSION_11
 //    }
 //    kotlinOptions {
-//        jvmTarget = '1.8'
+//        jvmTarget = '11'
 //    }
 
-    packagingOptions {
-        // 剔除这个包下的所有文件（不会移除签名信息）
-        exclude 'META-INF/*******'
-    }
+//    packagingOptions {
+//        // 剔除这个包下的所有文件（不会移除签名信息）
+//        exclude 'META-INF/*******'
+//    }
 
     applicationVariants.all { variant ->
         // apk 输出文件名配置

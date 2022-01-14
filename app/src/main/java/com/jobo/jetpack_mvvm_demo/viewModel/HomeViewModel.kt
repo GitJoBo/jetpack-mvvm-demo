@@ -1,22 +1,27 @@
 package com.jobo.jetpack_mvvm_demo.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.jobo.commonmvvm.app.api.NetUrl
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.net.LoadingType
+import com.jobo.commonmvvm.net.interception.logging.util.LogUtils
+import com.jobo.commonmvvm.utils.XLog
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
-import com.kunminx.architecture.ui.callback.UnPeekLiveData
-import com.zhixinhuixue.zsyte.xxx.data.response.ApiResponse
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import rxhttp.wrapper.param.RxHttp
+import rxhttp.wrapper.param.toResponse
+import rxhttp.wrapper.utils.GsonUtil
 
 class HomeViewModel : BaseViewModel() {
     //页码 首页数据页码从0开始
     private var pageIndex = 0
-    var listData = MutableLiveData<ApiPagerResponse<ArticleResponse>>()//Explanation for issues of type "NullSafeMutableLiveData"   LiveData bug？
-//    var listData :MutableLiveData<ApiPagerResponse<ArticleResponse>> = MutableLiveData<ApiPagerResponse<ArticleResponse>>()// 这样可以
+//    var listData = MutableLiveData<ApiPagerResponse<ArticleResponse>>()//Explanation for issues of type "NullSafeMutableLiveData"   LiveData bug？
+    var listData :MutableLiveData<ApiPagerResponse<ArticleResponse>> = MutableLiveData<ApiPagerResponse<ArticleResponse>>()// 这样可以
     //Explanation for issues of type "NullSafeMutableLiveData":
     //   This check ensures that LiveData values are not null when explicitly
     //            declared as non-nullable.
@@ -56,7 +61,9 @@ class HomeViewModel : BaseViewModel() {
         }
         rxHttpRequest {
             onRequest = {
-                listData.value = UserRepository.getList(pageIndex).await()
+                val await = UserRepository.getList(pageIndex).await()
+                XLog.d(GsonUtil.toJson(await))
+                listData.value = await
                 pageIndex++
             }
             loadingType = if (loadingXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL

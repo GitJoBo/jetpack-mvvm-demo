@@ -1,7 +1,7 @@
 package com.jobo.commonmvvm.ext
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.jobo.commonmvvm.entity.BasePage
+import com.jobo.commonmvvm.data.response.BasePage
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
