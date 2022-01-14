@@ -28,8 +28,8 @@ android {
         resConfigs 'xxhdpi'
 
         // 混淆配置
-        proguardFiles 'proguard-sdk.pro', 'proguard-app.pro'
-//        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        proguardFiles 'proguard-sdk.pro', 'proguard-app.pro'
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         // 日志打印开关
         buildConfigField('boolean', 'LOG_ENABLE', '' + LOG_ENABLE + '')
@@ -90,11 +90,11 @@ android {
             debuggable false
             jniDebuggable false
             // 压缩对齐开关
-            zipAlignEnabled true
+            zipAlignEnabled false
             // 移除无用的资源
-            shrinkResources true
+            shrinkResources false
             // 代码混淆开关
-            minifyEnabled true
+            minifyEnabled false
             // 签名信息配置
             signingConfig signingConfigs.config
             // 添加清单占位符

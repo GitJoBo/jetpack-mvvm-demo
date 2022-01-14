@@ -58,6 +58,15 @@ android {
         disable 'HardcodedText'
         // 禁用图片描述警告
         disable 'ContentDescription'
+
+        //TODO https://issuetracker.google.com/issues/214428166问题解决后注释掉，见HomeViewModel
+        //Task :app:lintVitalRelease FAILED
+        //1 errors, 0 warnings
+        //Lint found fatal errors while assembling a release target.
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 

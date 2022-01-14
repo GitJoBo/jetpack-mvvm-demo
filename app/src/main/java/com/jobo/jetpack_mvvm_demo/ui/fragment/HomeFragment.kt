@@ -86,7 +86,7 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun onRequestSuccess() {
         mViewModel.listData.observe(viewLifecycleOwner, {
-            mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
+//            mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
         })
     }
 

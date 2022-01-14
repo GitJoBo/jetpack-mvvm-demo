@@ -43,18 +43,18 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"
 
-    api "androidx.fragment:fragment-ktx:1.3.6"
+    api "androidx.fragment:fragment-ktx:1.4.0"
     // 协程基础库
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLINX_COROUTINES_CORE"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLINX_COROUTINES_CORE"
     //lifecycle
-    api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
     api "androidx.lifecycle:lifecycle-common-java8:2.4.0"
     api "androidx.lifecycle:lifecycle-extensions:2.2.0"
     // viewModel
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     // liveData
-    api "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
 
     //rxHttp
     api "com.squareup.okhttp3:okhttp:$OKHTTP"
@@ -68,9 +68,9 @@ dependencies {
     //Toast
     api "com.github.getActivity:ToastUtils:$TOAST_UTILS"
     //gson
-    api 'com.google.code.gson:gson:2.8.8'
+    api 'com.google.code.gson:gson:2.8.9'
     //利用liveData发送消息
-    api 'com.kunminx.arch:unpeek-livedata:7.1.0-beta1'
+    api 'com.kunminx.arch:unpeek-livedata:7.2.0-beta1'
     //material-dialog
     api "com.afollestad.material-dialogs:lifecycle:3.3.0"
     api "com.afollestad.material-dialogs:core:3.3.0"
