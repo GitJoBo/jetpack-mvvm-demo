@@ -8,6 +8,7 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.hjq.toast.ToastUtils
 import com.jobo.commonmvvm.base.BaseDbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
+import com.jobo.commonmvvm.ext.clickNoRepeat
 import com.jobo.uicommon.databinding.ActivityErrorBinding
 import com.jobo.uicommon.ext.clipboardManager
 import com.jobo.uicommon.ext.showMessage
