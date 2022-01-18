@@ -10,7 +10,7 @@ import com.jobo.commonmvvm.ext.logE
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.app.ext.bindViewPager2
 import com.jobo.jetpack_mvvm_demo.app.ext.init
-import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemBean
 import com.jobo.jetpack_mvvm_demo.databinding.ActivitySystemArrBinding
 import com.jobo.jetpack_mvvm_demo.ui.fragment.SystemChildFragment
 import com.jobo.uicommon.base.UIDBBaseActivity
@@ -22,7 +22,7 @@ import com.jobo.uicommon.base.UIDBBaseActivity
  *
  */
 class SystemArrActivity : UIDBBaseActivity<BaseViewModel, ActivitySystemArrBinding>() {
-    var mData: SystemResponse? = null
+    var mData: SystemBean? = null
     var index = 0
     private val mFragments = arrayListOf<Fragment>()
 
@@ -33,7 +33,7 @@ class SystemArrActivity : UIDBBaseActivity<BaseViewModel, ActivitySystemArrBindi
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mData = intent.getParcelableExtra<SystemResponse>(Config.KEY)
+        mData = intent.getParcelableExtra<SystemBean>(Config.KEY)
         index = intent.getIntExtra(Config.TYPE, 0)
         if (mData == null) {
             "data is null".logE()

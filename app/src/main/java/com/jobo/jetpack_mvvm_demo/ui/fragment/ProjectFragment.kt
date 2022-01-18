@@ -87,7 +87,7 @@ class ProjectFragment : BaseVbFragment<ProjectViewModel, FragmentProjectBinding>
     }
 
     override fun onRequestSuccess() {
-        mViewModel.projectTree.observe(viewLifecycleOwner, {
+        mViewModel.mProjectTree.observe(viewLifecycleOwner, {
             mDataList.clear()
             mFragments.clear()
             mDataList.add("最新项目")

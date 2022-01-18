@@ -3,7 +3,6 @@ package com.jobo.jetpack_mvvm_demo.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
-import com.jobo.commonmvvm.base.BaseDbActivity
 import com.jobo.commonmvvm.base.BaseVbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.gone

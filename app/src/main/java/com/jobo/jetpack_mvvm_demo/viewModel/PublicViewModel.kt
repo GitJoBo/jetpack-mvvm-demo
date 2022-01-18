@@ -1,20 +1,20 @@
 package com.jobo.jetpack_mvvm_demo.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import com.jobo.commonmvvm.app.api.NetUrl
+import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyBean
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 
 class PublicViewModel : BaseViewModel() {
     //页码 首页数据页码从0开始
     private var pageIndex = 0
-    val wxArticle: MutableLiveData<ArrayList<ClassifyResponse>> = MutableLiveData()
-    val wxArticleList: MutableLiveData<ApiPagerResponse<ArticleResponse>> = MutableLiveData()
+    val mWxArticle: MutableLiveData<ArrayList<ClassifyBean>> = MutableLiveData()
+    val mWxArticleList: MutableLiveData<ApiPagerResponse<ArticleBean>> = MutableLiveData()
 
 
     /**
@@ -23,10 +23,10 @@ class PublicViewModel : BaseViewModel() {
     fun getWxArticle() {
         rxHttpRequest {
             onRequest = {
-                wxArticle.value = UserRepository.getWxArticle().await()
+                mWxArticle.value = UserRepository.getWxArticle().await()
             }
             requestCode = NetUrl.WX_ARTICLE
-            loadingType = LoadingType.LOADING_NULL
+            loadingType = LoadingType.LOADING_XML
         }
     }
 
@@ -42,7 +42,7 @@ class PublicViewModel : BaseViewModel() {
         }
         rxHttpRequest {
             onRequest = {
-                wxArticleList.value = UserRepository.getWxArticleList(cid, pageIndex).await()
+                mWxArticleList.value = UserRepository.getWxArticleList(cid, pageIndex).await()
                 pageIndex++
             }
             loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL

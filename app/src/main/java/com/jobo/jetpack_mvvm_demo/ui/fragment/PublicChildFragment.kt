@@ -8,8 +8,7 @@ import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvBinding
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
 import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActionButtonBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
@@ -34,7 +33,7 @@ class PublicChildFragment : BaseVbFragment<PublicViewModel, IncludeSmartRefreshR
         }
         mArticleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                val item = adapter.getItem(position) as ArticleResponse
+                val item = adapter.getItem(position) as ArticleBean
                 toStartActivity<WebViewActivity>(requireActivity(), Pair(Config.TITLE, item.title), Pair(Config.URL, item.link))
             }
             addChildClickViewIds(R.id.item_home_author, R.id.item_project_author)
@@ -61,7 +60,7 @@ class PublicChildFragment : BaseVbFragment<PublicViewModel, IncludeSmartRefreshR
     }
 
     override fun onRequestSuccess() {
-        mViewModel.wxArticleList.observe(viewLifecycleOwner,{
+        mViewModel.mWxArticleList.observe(viewLifecycleOwner,{
             mArticleAdapter.loadListSuccess(it,mBind.includedRV.smartRefreshLayout)
         })
     }

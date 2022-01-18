@@ -6,6 +6,7 @@ import com.gyf.immersionbar.ImmersionBar
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentMeBinding
 import com.jobo.jetpack_mvvm_demo.ui.weight.XCollapsingToolbarLayout
+import com.jobo.jetpack_mvvm_demo.utils.CacheUtil
 import com.jobo.jetpack_mvvm_demo.viewModel.MeViewModel
 import com.jobo.uicommon.base.UIVBBaseFragment
 
@@ -20,6 +21,7 @@ class MeFragment : UIVBBaseFragment<MeViewModel, FragmentMeBinding>(), XCollapsi
         // 给这个 ToolBar 设置顶部内边距，才能和 TitleBar 进行对齐
         ImmersionBar.setTitleBar(requireActivity(), mBind.tbHomeTitle)
         mBind.xcltlMe.setScrimsListener(this)
+        mBind.tvTitle.text = CacheUtil.getUser()?.nickname
     }
 
     override fun onScrimsStateChange(layout: XCollapsingToolbarLayout?, shown: Boolean) {

@@ -15,7 +15,7 @@ import com.jobo.commonmvvm.state.BaseLoadingCallback
 import com.jobo.commonmvvm.utils.mvvmHelperLog
 import com.jobo.jetpack_mvvm_demo.BuildConfig
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.commonmvvm.app.api.NetHttpClient
+import com.jobo.commonmvvm.net.api.NetHttpClient
 import com.jobo.jetpack_mvvm_demo.ui.activity.SplashActivity
 import com.jobo.uicommon.ui.activity.ErrorActivity
 import com.kingja.loadsir.callback.SuccessCallback

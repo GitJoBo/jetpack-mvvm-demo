@@ -57,11 +57,11 @@ android {
             debuggable true
             jniDebuggable true
             // 压缩对齐开关
-            zipAlignEnabled true
+            zipAlignEnabled false
             // 移除无用的资源
-            shrinkResources true
+            shrinkResources false
             // 代码混淆开关
-            minifyEnabled true
+            minifyEnabled false
             // 签名信息配置
             signingConfig signingConfigs.config
             // 添加清单占位符 使用android:label="${app_name}"
@@ -153,7 +153,7 @@ android {
 }
 
 dependencies {
-    implementation project(":ui_common")
+    implementation project(":library:ui_common")
     //banner
     implementation "com.github.zhpanvip:BannerViewPager:3.5.5"
     //启动优化异步加载

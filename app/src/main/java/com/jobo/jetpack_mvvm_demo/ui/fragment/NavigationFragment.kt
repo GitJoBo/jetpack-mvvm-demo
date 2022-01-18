@@ -3,7 +3,7 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
-import com.jobo.commonmvvm.app.api.NetUrl
+import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.base.BaseVbFragment
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity

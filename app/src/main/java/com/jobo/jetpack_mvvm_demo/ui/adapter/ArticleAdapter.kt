@@ -8,27 +8,27 @@ import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.jobo.commonmvvm.ext.toHtml
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
 import com.jobo.jetpack_mvvm_demo.ui.weight.view.CollectView
 
-class ArticleAdapter(data: MutableList<ArticleResponse>?) :
-    BaseDelegateMultiAdapter<ArticleResponse, BaseViewHolder>(data) {
+class ArticleAdapter(data: MutableList<ArticleBean>?) :
+    BaseDelegateMultiAdapter<ArticleBean, BaseViewHolder>(data) {
 
     private val Article = 1//文章类型
     private val Project = 2//项目类型 本来打算不区分文章和项目布局用统一布局的，但是布局完以后发现差异化蛮大的，所以还是分开吧
     private var showTag = false//是否展示标签 tag 一般主页才用的到
 
-    private var collectAction: (item: ArticleResponse, v: CollectView, position: Int) -> Unit =
-        { _: ArticleResponse, _: CollectView, _: Int -> }
+    private var collectAction: (item: ArticleBean, v: CollectView, position: Int) -> Unit =
+        { _: ArticleBean, _: CollectView, _: Int -> }
 
-    constructor(data: MutableList<ArticleResponse>?, showTag: Boolean = false) : this(data) {
+    constructor(data: MutableList<ArticleBean>?, showTag: Boolean = false) : this(data) {
         this.showTag = showTag
     }
 
     init {
         // 第一步，设置代理
-        setMultiTypeDelegate(object : BaseMultiTypeDelegate<ArticleResponse>() {
-            override fun getItemType(data: List<ArticleResponse>, position: Int): Int {
+        setMultiTypeDelegate(object : BaseMultiTypeDelegate<ArticleBean>() {
+            override fun getItemType(data: List<ArticleBean>, position: Int): Int {
                 return if (TextUtils.isEmpty(data[position].envelopePic)) Article else Project
             }
         })
@@ -39,7 +39,7 @@ class ArticleAdapter(data: MutableList<ArticleResponse>?) :
         }
     }
 
-    override fun convert(holder: BaseViewHolder, item: ArticleResponse) {
+    override fun convert(holder: BaseViewHolder, item: ArticleBean) {
         when (holder.itemViewType) {
             Article -> {
                 //文章布局的赋值
@@ -121,7 +121,7 @@ class ArticleAdapter(data: MutableList<ArticleResponse>?) :
         }
     }
 
-    fun setCollectClick(inputCollectAction: (item: ArticleResponse, v: CollectView, position: Int) -> Unit) {
+    fun setCollectClick(inputCollectAction: (item: ArticleBean, v: CollectView, position: Int) -> Unit) {
         this.collectAction = inputCollectAction
     }
 }

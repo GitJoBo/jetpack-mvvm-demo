@@ -89,7 +89,7 @@ class PublicFragment : UIVBBaseFragment<PublicViewModel, IncludeMagicindicatorVi
     }
 
     override fun onRequestSuccess() {
-        mViewModel.wxArticle.observe(viewLifecycleOwner, {
+        mViewModel.mWxArticle.observe(viewLifecycleOwner, {
             mTitles.clear()
             mFragments.clear()
 //            mTitles.addAll(it.map { it.name })

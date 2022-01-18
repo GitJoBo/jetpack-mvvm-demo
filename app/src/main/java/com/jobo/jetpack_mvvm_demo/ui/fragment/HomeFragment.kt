@@ -5,13 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.gyf.immersionbar.ktx.immersionBar
-import com.jobo.commonmvvm.app.api.NetUrl
+import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentHomeBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
@@ -48,7 +48,7 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 //TODO 详情
 //                KLog.d("setOnItemClickListener")
                 "setOnItemClickListener".logD()
-                val item = adapter.getItem(position) as ArticleResponse
+                val item = adapter.getItem(position) as ArticleBean
                 toStartActivity<WebViewActivity>(requireActivity(), Pair(Config.TITLE, item.title), Pair(Config.URL, item.link))
             }
             addChildClickViewIds(R.id.item_home_author, R.id.item_project_author)
@@ -85,7 +85,7 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun onRequestSuccess() {
-        mViewModel.listData.observe(viewLifecycleOwner, {
+        mViewModel.mListData.observe(viewLifecycleOwner, {
             mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
         })
     }

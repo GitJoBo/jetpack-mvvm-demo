@@ -5,9 +5,9 @@ import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemBean
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 
 class PlazaViewModel : BaseViewModel() {
@@ -16,22 +16,22 @@ class PlazaViewModel : BaseViewModel() {
     /**
      * 广场/每日一问
      */
-    val userArticleList = MutableLiveData<ApiPagerResponse<ArticleResponse>>()
+    val userArticleList = MutableLiveData<ApiPagerResponse<ArticleBean>>()
 
     /**
      * 体系
      */
-    val system = MutableLiveData<MutableList<SystemResponse>>()
+    val system = MutableLiveData<MutableList<SystemBean>>()
 
     /**
      * 知识体系下的文章数据
      */
-    val systemChild = MutableLiveData<ApiPagerResponse<ArticleResponse>>()
+    val systemChild = MutableLiveData<ApiPagerResponse<ArticleBean>>()
 
     /**
      * 导航
      */
-    val navi = MutableLiveData<MutableList<NavigationResponse>>()
+    val navi = MutableLiveData<MutableList<NavigationBean>>()
 
     /**
      * 获取广场列表

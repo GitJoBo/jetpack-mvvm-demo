@@ -1,20 +1,20 @@
 package com.jobo.jetpack_mvvm_demo.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import com.jobo.commonmvvm.app.api.NetUrl
+import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ClassifyBean
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
 
 class ProjectViewModel : BaseViewModel() {
     //页码 首页数据页码从0开始
     private var pageIndex = 0
-    var projectTree: MutableLiveData<List<ClassifyResponse>> = MutableLiveData()
-    var projectList: MutableLiveData<ApiPagerResponse<ArticleResponse>> = MutableLiveData()
+    var mProjectTree: MutableLiveData<List<ClassifyBean>> = MutableLiveData()
+    var mProjectList: MutableLiveData<ApiPagerResponse<ArticleBean>> = MutableLiveData()
 
     /**
      * 获取项目分类
@@ -22,10 +22,10 @@ class ProjectViewModel : BaseViewModel() {
     fun getProjectTree() {
         rxHttpRequest {
             onRequest = {
-                projectTree.value = UserRepository.getProjectTree().await()
+                mProjectTree.value = UserRepository.getProjectTree().await()
             }
             requestCode = NetUrl.PROJECT_TREE
-            loadingType = LoadingType.LOADING_NULL
+            loadingType = LoadingType.LOADING_XML
         }
     }
 
@@ -41,7 +41,7 @@ class ProjectViewModel : BaseViewModel() {
         }
         rxHttpRequest {
             onRequest = {
-                projectList.value = UserRepository.getProjectList(pageIndex, cid).await()
+                mProjectList.value = UserRepository.getProjectList(pageIndex, cid).await()
                 pageIndex++
             }
             requestCode = if (cid == 0) NetUrl.PROJECT_LIST_NEW else NetUrl.PROJECT_LIST_ID

@@ -21,7 +21,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "jetpack-mvvm-demo"
 include ':app'
-include ':commonmvvm'
-include ':ui_common'
+include ':library:commonmvvm'
+include ':library:ui_common'
 
-include ':composedemo'

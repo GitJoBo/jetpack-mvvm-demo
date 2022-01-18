@@ -7,23 +7,29 @@ import com.jobo.commonmvvm.data.response.UserInfo
 import com.tencent.mmkv.MMKV
 
 object CacheUtil {
+    var userInfo: UserInfo? = null
+
     /**
      * 获取保存的账户信息
      */
     fun getUser(): UserInfo? {
-        val kv = MMKV.mmkvWithID("app")
-        val userStr = kv.decodeString("user")
-        return if (TextUtils.isEmpty(userStr)) {
-           null
-        } else {
-            Gson().fromJson(userStr, UserInfo::class.java)
+        if (userInfo == null) {
+            val kv = MMKV.mmkvWithID("app")
+            val userStr = kv.decodeString("user")
+            return if (TextUtils.isEmpty(userStr)) {
+                null
+            } else {
+                Gson().fromJson(userStr, UserInfo::class.java)
+            }
         }
+        return userInfo
     }
 
     /**
      * 设置账户信息
      */
     fun setUser(userResponse: UserInfo?) {
+        userInfo = userResponse
         val kv = MMKV.mmkvWithID("app")
         if (userResponse == null) {
             kv.encode("user", "")
@@ -58,10 +64,11 @@ object CacheUtil {
         val kv = MMKV.mmkvWithID("app")
         return kv.decodeBool("first", true)
     }
+
     /**
      * 是否是第一次登陆
      */
-    fun setFirst(first:Boolean): Boolean {
+    fun setFirst(first: Boolean): Boolean {
         val kv = MMKV.mmkvWithID("app")
         return kv.encode("first", first)
     }
@@ -73,28 +80,29 @@ object CacheUtil {
         val kv = MMKV.mmkvWithID("app")
         return kv.decodeBool("top", true)
     }
+
     /**
      * 设置首页是否开启获取指定文章
      */
-    fun setIsNeedTop(isNeedTop:Boolean): Boolean {
+    fun setIsNeedTop(isNeedTop: Boolean): Boolean {
         val kv = MMKV.mmkvWithID("app")
         return kv.encode("top", isNeedTop)
     }
+
     /**
      * 获取搜索历史缓存数据
      */
     fun getSearchHistoryData(): ArrayList<String> {
         val kv = MMKV.mmkvWithID("cache")
-        val searchCacheStr =  kv.decodeString("history")
+        val searchCacheStr = kv.decodeString("history")
         if (!TextUtils.isEmpty(searchCacheStr)) {
-            return Gson().fromJson(searchCacheStr
-                , object : TypeToken<ArrayList<String>>() {}.type)
+            return Gson().fromJson(searchCacheStr, object : TypeToken<ArrayList<String>>() {}.type)
         }
         return arrayListOf()
     }
 
     fun setSearchHistoryData(searchResponseStr: String) {
         val kv = MMKV.mmkvWithID("cache")
-        kv.encode("history",searchResponseStr)
+        kv.encode("history", searchResponseStr)
     }
 }

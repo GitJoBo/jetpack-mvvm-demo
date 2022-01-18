@@ -163,7 +163,7 @@
 -keep class com.jobo.jetpack_mvvm_demo.data.model.bean.**{<fields>;}
 -keep class com.jobo.jetpack_mvvm_demo.data.model.**{<fields>;}
 -keep class com.jobo.commonmvvm.data.response.**{<fields>;}
-#-keep class com.jobo.commonmvvm.app.api.ResponseParser{<fields>;}
+#-keep class com.jobo.commonmvvm.net.api.ResponseParser{<fields>;}
 #-keep class com.jobo.commonmvvm.net.LoadingDialogEntity{<fields>;}
 #-keep class com.jobo.commonmvvm.net.LoadStatusEntity{<fields>;}
 ##---------------End: proguard configuration for Gson  ----------

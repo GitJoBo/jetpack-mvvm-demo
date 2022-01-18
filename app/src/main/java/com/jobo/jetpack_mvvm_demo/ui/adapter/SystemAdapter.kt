@@ -9,18 +9,18 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.jobo.commonmvvm.ext.toHtml
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemBean
 
-class SystemAdapter(data: ArrayList<SystemResponse>) :
-    BaseQuickAdapter<SystemResponse, BaseViewHolder>(R.layout.item_system, data) {
-    private var method: (data: SystemResponse, view: View, position: Int) -> Unit =
-        { _: SystemResponse, _: View, _: Int -> }
+class SystemAdapter(data: ArrayList<SystemBean>) :
+    BaseQuickAdapter<SystemBean, BaseViewHolder>(R.layout.item_system, data) {
+    private var method: (data: SystemBean, view: View, position: Int) -> Unit =
+        { _: SystemBean, _: View, _: Int -> }
 
 //    init {
 //        setAdapterAnimation(SettingUtil.getListMode())
 //    }
 
-    override fun convert(holder: BaseViewHolder, item: SystemResponse) {
+    override fun convert(holder: BaseViewHolder, item: SystemBean) {
         holder.setText(R.id.item_system_title, item.name.toHtml())
         holder.getView<RecyclerView>(R.id.item_system_rv).run {
             val foxayoutManager: FlexboxLayoutManager by lazy {
@@ -45,7 +45,7 @@ class SystemAdapter(data: ArrayList<SystemResponse>) :
     }
 
 
-    fun setChildClick(method: (data: SystemResponse, view: View, position: Int) -> Unit) {
+    fun setChildClick(method: (data: SystemBean, view: View, position: Int) -> Unit) {
         this.method = method
     }
 }

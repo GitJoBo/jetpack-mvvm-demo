@@ -9,17 +9,16 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.jobo.commonmvvm.ext.toHtml
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationResponse
-import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationBean
 
-class NavigationAdapter(data: ArrayList<NavigationResponse>) :
-    BaseQuickAdapter<NavigationResponse, BaseViewHolder>(R.layout.item_system, data) {
+class NavigationAdapter(data: ArrayList<NavigationBean>) :
+    BaseQuickAdapter<NavigationBean, BaseViewHolder>(R.layout.item_system, data) {
 
-    private var method: (data: ArticleResponse, view: View, position: Int) -> Unit =
-        { _: ArticleResponse, _: View, _: Int -> }
+    private var method: (data: ArticleBean, view: View, position: Int) -> Unit =
+        { _: ArticleBean, _: View, _: Int -> }
 
-    override fun convert(holder: BaseViewHolder, item: NavigationResponse) {
+    override fun convert(holder: BaseViewHolder, item: NavigationBean) {
         holder.setText(R.id.item_system_title, item.name.toHtml())
         holder.getView<RecyclerView>(R.id.item_system_rv).run {
             val foxayoutManager: FlexboxLayoutManager by lazy {
@@ -44,7 +43,7 @@ class NavigationAdapter(data: ArrayList<NavigationResponse>) :
     }
 
 
-    fun setChildClick(method: (data: ArticleResponse, view: View, position: Int) -> Unit) {
+    fun setChildClick(method: (data: ArticleBean, view: View, position: Int) -> Unit) {
         this.method = method
     }
 

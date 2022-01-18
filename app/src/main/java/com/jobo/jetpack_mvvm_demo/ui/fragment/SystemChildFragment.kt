@@ -3,14 +3,13 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
-import com.jobo.commonmvvm.app.api.NetUrl
+import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.base.BaseVbFragment
-import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
-import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleResponse
+import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
 import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActionButtonBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
@@ -30,7 +29,7 @@ class SystemChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRv
         mArticleAdapter.run {
             setOnItemClickListener { adapter, view, position ->
                 "setOnItemClickListener".logD()
-                val item = adapter.getItem(position) as ArticleResponse
+                val item = adapter.getItem(position) as ArticleBean
                 toStartActivity<WebViewActivity>(requireActivity(), Pair(Config.TITLE, item.title), Pair(Config.URL, item.link))
             }
             addChildClickViewIds(R.id.item_home_author, R.id.item_project_author)
