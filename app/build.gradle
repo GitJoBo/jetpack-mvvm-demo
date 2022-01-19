@@ -4,7 +4,7 @@ plugins {
 //    id 'kotlin-kapt'
 //    id 'kotlin-parcelize'
 }
-apply from : '../common.gradle'
+apply from: '../common.gradle'
 
 android {
 //    compileSdk project.ANDROID_COMPILE_SDK_VERSION as int
@@ -66,7 +66,7 @@ android {
             signingConfig signingConfigs.config
             // 添加清单占位符 使用android:label="${app_name}"
             addManifestPlaceholders([
-                    'app_name'    :    '基础架构 Debug 版'
+                    'app_name': '基础架构 Debug 版'
             ])
             // 调试模式下只保留一种架构的 so 库，提升打包速度
             ndk {
@@ -79,7 +79,7 @@ android {
             applicationIdSuffix ''
             // 添加清单占位符 使用android:label="${app_name}"
             addManifestPlaceholders([
-                    'app_name'    :    '基础架构 Preview 版'
+                    'app_name': '基础架构 Preview 版'
             ])
         }
 
@@ -97,7 +97,7 @@ android {
             signingConfig signingConfigs.config
             // 添加清单占位符
             addManifestPlaceholders([
-                    'app_name'    :    '@string/app_name'
+                    'app_name': '@string/app_name'
             ])
             // 仅保留两种架构的 so 库，根据 Bugly 统计得出
             ndk {
@@ -164,6 +164,18 @@ dependencies {
     // 内存泄漏监测框架：https://github.com/square/leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 //    previewImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+
+    //
+//    implementation "io.github.scwang90:refresh-header-radar:$SMART_REFRESH"       //雷达刷新头
+//    implementation "io.github.scwang90:refresh-header-falsify:$SMART_REFRESH"    //虚拟刷新头
+//    implementation "io.github.scwang90:refresh-header-material:$SMART_REFRESH"    //谷歌刷新头
+//    implementation "io.github.scwang90:refresh-header-two-level:$SMART_REFRESH"   //二级刷新头
+//    implementation "io.github.scwang90:refresh-footer-ball:$SMART_REFRESH"        //球脉冲加载
+    implementation "com.scwang.smart:refresh-header-radar:$SMART_REFRESH"       //雷达刷新头
+    implementation "com.scwang.smart:refresh-header-falsify:$SMART_REFRESH"    //虚拟刷新头
+    implementation "com.scwang.smart:refresh-header-material:$SMART_REFRESH"    //谷歌刷新头
+    implementation "com.scwang.smart:refresh-header-two-level:$SMART_REFRESH"   //二级刷新头
+    implementation "com.scwang.smart:refresh-footer-ball:$SMART_REFRESH"        //球脉冲加载
 
 //    implementation "androidx.core:core-ktx:$CORE_KTX"
 //    implementation "androidx.appcompat:appcompat:$APPCOMPAT"

@@ -26,7 +26,7 @@ class RequestCollectViewModel : BaseViewModel() {
     fun favoriteArticles(id: String) {
         rxHttpRequest {
             onRequest = {
-                val await = UserRepository.favoriteArticles(id).await()
+                val await = UserRepository.postFavoriteArticles(id).await()
                 val uiState = CollectUiState(isSuccess = true, collect = true, id = id)
                 favoriteArticles.value = uiState
             }
@@ -44,7 +44,7 @@ class RequestCollectViewModel : BaseViewModel() {
     fun unfavorite(id: String) {
         rxHttpRequest {
             onRequest = {
-                val await = UserRepository.unfavorite(id).await()
+                val await = UserRepository.postUnfavorite(id).await()
                 val uiState = CollectUiState(isSuccess = true, collect = false, id = id)
                 favoriteArticles.value = uiState
             }

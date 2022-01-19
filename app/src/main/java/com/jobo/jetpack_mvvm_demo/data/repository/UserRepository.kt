@@ -117,7 +117,7 @@ object UserRepository {
     /**
      * 收藏文章
      */
-    fun favoriteArticles(id: String): Await<String> {
+    fun postFavoriteArticles(id: String): Await<String> {
         return RxHttp.postJson(NetUrl.FAVORITE_ARTICLES)
             .addPath("id", id)
             .toStr()
@@ -126,10 +126,36 @@ object UserRepository {
     /**
      * 取消收藏
      */
-    fun unfavorite(id: String): Await<String> {
+    fun postUnfavorite(id: String): Await<String> {
         return RxHttp.postJson(NetUrl.UN_FAVORITE)
             .addPath("id", id)
             .toStr()
+    }
+
+    /**
+     * 获取积分 Integral
+     */
+    fun getIntegral(): Await<IntegralBean> {
+        return RxHttp.get(NetUrl.ME_INTEGRAL)
+            .toResponse()
+    }
+
+    /**
+     * 获取积分排行榜
+     */
+    fun getIntegralRank(page: Int): Await<ApiPagerResponse<IntegralBean>> {
+        return RxHttp.get(NetUrl.INTEGRAL_RANK)
+            .addPath("page", page)
+            .toResponse()
+    }
+
+    /**
+     * 获取积分历史
+     */
+    fun getIntegralHistory(page: Int): Await<ApiPagerResponse<IntegralHistoryBean>> {
+        return RxHttp.get(NetUrl.INTEGRAL_HISTORY)
+            .addPath("page", page)
+            .toResponse()
     }
 
 

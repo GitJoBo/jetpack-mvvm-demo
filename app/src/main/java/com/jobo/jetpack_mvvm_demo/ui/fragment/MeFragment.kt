@@ -1,15 +1,24 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.gyf.immersionbar.ImmersionBar
+import com.jobo.commonmvvm.data.annotation.ValueKey
+import com.jobo.commonmvvm.ext.refresh
+import com.jobo.commonmvvm.ext.toStartActivity
+import com.jobo.commonmvvm.net.api.NetHttpClient
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentMeBinding
+import com.jobo.jetpack_mvvm_demo.ui.activity.IntegralActivity
 import com.jobo.jetpack_mvvm_demo.ui.weight.XCollapsingToolbarLayout
 import com.jobo.jetpack_mvvm_demo.utils.CacheUtil
 import com.jobo.jetpack_mvvm_demo.viewModel.MeViewModel
 import com.jobo.uicommon.base.UIVBBaseFragment
+import com.scwang.smart.refresh.header.BezierRadarHeader
+import com.scwang.smart.refresh.header.MaterialHeader
+import rxhttp.RxHttpPlugins
 
 /**
  * @Desc: 我的
@@ -22,15 +31,40 @@ class MeFragment : UIVBBaseFragment<MeViewModel, FragmentMeBinding>(), XCollapsi
         // 给这个 ToolBar 设置顶部内边距，才能和 TitleBar 进行对齐
         ImmersionBar.setTitleBar(requireActivity(), mBind.tbHomeTitle)
         mBind.xcltlMe.setScrimsListener(this)
-        mBind.sbSignOut.setOnClickListener {
-            CacheUtil.setUser(null)
+
+        mBind.smartRefreshLayout.setRefreshHeader(MaterialHeader(requireContext()))
+        mBind.smartRefreshLayout.setOnRefreshListener {
+            lazyLoadData()
         }
-        mBind.tvTitle.text = mViewModel.getUser()?.nickname
-        mBind.tvName.text = mViewModel.getUser()?.nickname
+        mBind.sbSignOut.setOnClickListener {
+            NetHttpClient.sCookieStore.removeAllCookie()
+            CacheUtil.setUser(null)
+            lazyLoadData()
+        }
+        mBind.sbIntegral.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable(ValueKey.KEY, mViewModel.integralBean)
+            toStartActivity<IntegralActivity>(requireActivity(),bundle)
+        }
     }
 
     override fun onScrimsStateChange(layout: XCollapsingToolbarLayout?, shown: Boolean) {
         mBind.tvTitle.setTextColor(ContextCompat.getColor(requireActivity(), if (shown) R.color.black else R.color.white))
         mBind.tvTitle.visibility = if (shown) View.VISIBLE else View.GONE
+    }
+
+    override fun lazyLoadData() {
+        mBind.tvTitle.text = mViewModel.getUser()?.nickname
+        mBind.tvName.text = mViewModel.getUser()?.nickname
+        mViewModel.getIntegral()
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onRequestSuccess() {
+        mViewModel.integral.observe(viewLifecycleOwner, {
+            mBind.smartRefreshLayout.finishRefresh()
+            mBind.tvId.text = "id：${it.userId}  排名：${it.rank}"
+            mBind.sbIntegral.setRightText("当前积分： ${it.coinCount}")
+        })
     }
 }

@@ -95,6 +95,16 @@ object NetUrl {
      */
     const val ME_INTEGRAL = "lg/coin/userinfo/json"
 
+    /**
+     * 获取积分排行榜
+     */
+    const val INTEGRAL_RANK = "coin/rank/{page}/json"
+
+    /**
+     * 获取积分历史
+     */
+    const val INTEGRAL_HISTORY = "lg/coin/list/{page}/json"
+
 
     const val UPLOAD_URL = "http://t.xinhuo.com/index.php/Api/Pic/uploadPic"
 
