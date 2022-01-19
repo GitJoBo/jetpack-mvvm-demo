@@ -1,19 +1,25 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.GsonUtils
 import com.jobo.commonmvvm.base.BaseVbFragment
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.utils.Config
 import com.jobo.jetpack_mvvm_demo.R
+import com.jobo.jetpack_mvvm_demo.app.eventViewModel
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.event.CollectBus
 import com.jobo.jetpack_mvvm_demo.databinding.IncludeSmartRefreshRvFloatingActionButtonBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.PlazaViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.RequestCollectViewModel
+import com.jobo.uicommon.ext.showMessage
 
 /**
  * @Desc: 广场
@@ -23,6 +29,9 @@ import com.jobo.jetpack_mvvm_demo.viewModel.PlazaViewModel
  */
 class PlazaChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf(), true) }
+
+    //收藏viewModel
+    private val mRequestCollectViewModel: RequestCollectViewModel by viewModels()
 
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -41,9 +50,11 @@ class PlazaChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvF
         mArticleAdapter.run {
             setCollectClick { item, v, position ->
                 if (v.isChecked) {
-                    "关注".logD()
-                } else {
                     "取消关注".logD()
+                    mRequestCollectViewModel.unfavorite(item.id)
+                } else {
+                    "关注".logD()
+                    mRequestCollectViewModel.favoriteArticles(item.id)
                 }
             }
             setOnItemClickListener { adapter, view, position ->
@@ -70,6 +81,40 @@ class PlazaChildFragment : BaseVbFragment<PlazaViewModel, IncludeSmartRefreshRvF
     override fun onRequestSuccess() {
         mViewModel.userArticleList.observe(viewLifecycleOwner, {
             mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
+        })
+
+        mRequestCollectViewModel.favoriteArticles.observe(viewLifecycleOwner, {
+            if (it.isSuccess) {
+                //收藏或取消收藏操作成功，发送全局收藏消息
+                eventViewModel.collectEvent.value = CollectBus(it.id, it.collect)
+            } else {
+                it.errorMsg?.run {
+                    showMessage(this)
+                }
+                for (index in mArticleAdapter.data.indices) {
+                    if (mArticleAdapter.data[index].id == it.id) {
+                        if (mArticleAdapter.data[index].collect != it.collect) {
+                            mArticleAdapter.data[index].collect = it.collect
+//                            mArticleAdapter.notifyItemChanged(index)
+                        }
+                        break
+                    }
+                }
+            }
+        })
+
+        //监听全局的收藏信息 收藏的Id跟本列表的数据id匹配则需要更新
+        eventViewModel.collectEvent.observe(viewLifecycleOwner, {
+            GsonUtils.toJson(it).logD()
+            for (index in mArticleAdapter.data.indices) {
+                if (mArticleAdapter.data[index].id == it.id) {
+                    if (mArticleAdapter.data[index].collect != it.collect) {
+                        mArticleAdapter.data[index].collect = it.collect
+//                        mArticleAdapter.notifyItemChanged(index)
+                    }
+                    break
+                }
+            }
         })
     }
 }

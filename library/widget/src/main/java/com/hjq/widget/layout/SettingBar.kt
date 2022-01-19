@@ -28,7 +28,8 @@ import com.hjq.widget.R
  *    desc   : 设置条自定义控件
  */
 class SettingBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0,
+) :
     FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     companion object {

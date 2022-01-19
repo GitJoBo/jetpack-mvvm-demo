@@ -21,6 +21,11 @@ object NetUrl {
     const val LOGIN = "user/login"
 
     /**
+     * 注册
+     */
+    const val REGISTER = "user/register"
+
+    /**
      * 获取首页列表数据
      */
     const val HOME_LIST = "article/list/%1\$d/json"
@@ -76,14 +81,14 @@ object NetUrl {
     const val WX_ARTICLE_LIST = "wxarticle/list/{id}/{page}/json"
 
     /**
-     * 登录
+     * 收藏文章
      */
-    const val LOIN = "user/login"
+    const val FAVORITE_ARTICLES = "lg/collect/{id}/json"
 
     /**
-     * 注册
+     * 取消收藏
      */
-    const val REGISTER = "user/register"
+    const val UN_FAVORITE = "lg/uncollect_originId/{id}/json"
 
     /**
      * 获取当前账户的个人积分

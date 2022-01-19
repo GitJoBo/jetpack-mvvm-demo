@@ -22,7 +22,7 @@
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/aet_name"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/height_48"
+                    android:layout_height="@dimen/comm_48"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="80dp"
                     android:layout_marginEnd="20dp"
@@ -40,7 +40,7 @@
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/aet_pass"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/height_48"
+                    android:layout_height="@dimen/comm_48"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/shape_edit"
                     android:hint="请输入密码"
@@ -56,7 +56,7 @@
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/height_48"
+                    android:layout_height="@dimen/comm_48"
                     android:layout_marginTop="50dp"
                     android:text="登录"
                     android:onClick="onClick"
@@ -68,7 +68,7 @@
                 <TextView
                     android:id="@+id/tv_register"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/height_48"
+                    android:layout_height="@dimen/comm_48"
                     android:gravity="center"
                     android:text="去注册"
                     android:onClick="onClick"

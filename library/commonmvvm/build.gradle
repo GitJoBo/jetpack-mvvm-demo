@@ -88,7 +88,8 @@ dependencies {
     // api "com.noober.background:core:1.6.5"
     api "com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.2"
     //屏幕适配
-    api 'me.jessyan:autosize:1.2.1'
+//    api 'me.jessyan:autosize:1.2.1'
+    api 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
     //防崩溃
     api 'cat.ereza:customactivityoncrash:2.3.0'
     //https://github.com/Blankj/AndroidUtilCode

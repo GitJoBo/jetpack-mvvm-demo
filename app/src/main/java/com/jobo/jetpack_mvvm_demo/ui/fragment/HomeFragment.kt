@@ -2,6 +2,7 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.gyf.immersionbar.ktx.immersionBar
@@ -17,6 +18,7 @@ import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.HomeViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.RequestCollectViewModel
 import com.jobo.uicommon.base.UIDBBaseFragment
 
 /**
@@ -30,6 +32,9 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
     //适配器
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf(), true) }
 
+    //收藏viewModel
+    private val mRequestCollectViewModel: RequestCollectViewModel by viewModels()
+
     override fun initView(savedInstanceState: Bundle?) {
         mBind.includedTitle.titleBar.title = "首页"
         mBind.includedTitle.titleBar.titleView.setTextColor(getColorExt(R.color.white))
@@ -37,11 +42,11 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
         mArticleAdapter.run {
             setCollectClick { item, v, _ ->
                 if (v.isChecked) {
-                    //TODO 取消关注请求
                     "取消关注请求".logD()
+                    mRequestCollectViewModel.unfavorite(item.id)
                 } else {
-                    //TODO 关注请求
                     "关注请求".logD()
+                    mRequestCollectViewModel.favoriteArticles(item.id)
                 }
             }
             setOnItemClickListener { adapter, view, position ->

@@ -1,6 +1,7 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.jobo.commonmvvm.base.BaseVbFragment
@@ -14,10 +15,13 @@ import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.ProjectViewModel
+import com.jobo.jetpack_mvvm_demo.viewModel.RequestCollectViewModel
 
 class ProjectChildFragment : BaseVbFragment<ProjectViewModel, IncludeSmartRefreshRvFloatingActionButtonBinding>() {
     //适配器
     private val mArticleAdapter: ArticleAdapter by lazy { ArticleAdapter(arrayListOf()) }
+    private val mRequestCollectViewModel: RequestCollectViewModel by viewModels()
+
 
     //是否是最新项目
 //    private var isNew = false
@@ -44,11 +48,11 @@ class ProjectChildFragment : BaseVbFragment<ProjectViewModel, IncludeSmartRefres
         mArticleAdapter.run {
             setCollectClick { item, v, position ->
                 if (v.isChecked) {
-                    //TODO 取消关注请求
                     "取消关注请求".logD()
+                    mRequestCollectViewModel.unfavorite(item.id)
                 } else {
-                    //TODO 关注请求
                     "关注请求".logD()
+                    mRequestCollectViewModel.favoriteArticles(item.id)
                 }
             }
             setOnItemClickListener { adapter, view, position ->

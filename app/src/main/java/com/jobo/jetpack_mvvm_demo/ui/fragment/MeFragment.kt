@@ -1,6 +1,7 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.gyf.immersionbar.ImmersionBar
 import com.jobo.jetpack_mvvm_demo.R
@@ -21,11 +22,15 @@ class MeFragment : UIVBBaseFragment<MeViewModel, FragmentMeBinding>(), XCollapsi
         // 给这个 ToolBar 设置顶部内边距，才能和 TitleBar 进行对齐
         ImmersionBar.setTitleBar(requireActivity(), mBind.tbHomeTitle)
         mBind.xcltlMe.setScrimsListener(this)
-        mBind.tvTitle.text = CacheUtil.getUser()?.nickname
+        mBind.sbSignOut.setOnClickListener {
+            CacheUtil.setUser(null)
+        }
+        mBind.tvTitle.text = mViewModel.getUser()?.nickname
+        mBind.tvName.text = mViewModel.getUser()?.nickname
     }
 
     override fun onScrimsStateChange(layout: XCollapsingToolbarLayout?, shown: Boolean) {
-//        ImmersionBar.with(this).statusBarDarkFont(shown).init()
-        mBind.tvTitle?.setTextColor(ContextCompat.getColor(requireActivity(), if (shown) R.color.black else R.color.white))
+        mBind.tvTitle.setTextColor(ContextCompat.getColor(requireActivity(), if (shown) R.color.black else R.color.white))
+        mBind.tvTitle.visibility = if (shown) View.VISIBLE else View.GONE
     }
 }

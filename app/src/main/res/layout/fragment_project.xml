@@ -17,7 +17,7 @@
         <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/magicIndicator"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_48"
+            android:layout_height="@dimen/comm_48"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2

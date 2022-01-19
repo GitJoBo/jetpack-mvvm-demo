@@ -6,6 +6,7 @@ import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
 import com.jobo.commonmvvm.net.LoadingType
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
+import com.jobo.jetpack_mvvm_demo.data.model.bean.CollectUiState
 import com.jobo.jetpack_mvvm_demo.data.model.bean.NavigationBean
 import com.jobo.jetpack_mvvm_demo.data.model.bean.SystemBean
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
@@ -106,4 +107,8 @@ class PlazaViewModel : BaseViewModel() {
             loadingType = if (showLoadXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
         }
     }
+
+    /**
+     * 收藏文章
+     */
 }

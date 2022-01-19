@@ -4,6 +4,7 @@ import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.data.response.UserInfo
 import com.jobo.jetpack_mvvm_demo.data.model.bean.*
+import rxhttp.toStr
 import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
@@ -113,23 +114,23 @@ object UserRepository {
             .toResponse()
     }
 
-//    /**
-//     * 设置用户信息
-//     */
-//    fun setUser(user: UserInfo) {
-//        mmkv.encode(ValueKey.USER, user)
-//    }
-//
-//    /**
-//     * 获取登录用户信息
-//     * @return UserBean?
-//     */
-//    fun getUser(): UserInfo? {
-//        if (user == null) {
-//            user = mmkv.decodeParcelable(ValueKey.USER, UserInfo::class.java)
-//        }
-//        return user
-//    }
+    /**
+     * 收藏文章
+     */
+    fun favoriteArticles(id: String): Await<String> {
+        return RxHttp.postJson(NetUrl.FAVORITE_ARTICLES)
+            .addPath("id", id)
+            .toStr()
+    }
+
+    /**
+     * 取消收藏
+     */
+    fun unfavorite(id: String): Await<String> {
+        return RxHttp.postJson(NetUrl.UN_FAVORITE)
+            .addPath("id", id)
+            .toStr()
+    }
 
 
 }

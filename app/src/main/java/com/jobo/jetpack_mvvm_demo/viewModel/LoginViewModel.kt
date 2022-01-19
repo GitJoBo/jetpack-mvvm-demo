@@ -21,6 +21,7 @@ class LoginViewModel : BaseViewModel() {
                 GsonUtils.toJson(login.value).logD()
                 CacheUtil.setUser(login.value)
             }
+            loadingMessage = "登录中..."
             loadingType = LoadingType.LOADING_DIALOG
             requestCode = NetUrl.LOGIN
         }

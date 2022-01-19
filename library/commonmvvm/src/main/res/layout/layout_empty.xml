@@ -10,24 +10,24 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/loading_empty_img"
-        android:layout_width="@dimen/helper.dp.80"
-        android:layout_height="@dimen/helper.dp.80"
+        android:layout_width="@dimen/comm_dp_80"
+        android:layout_height="@dimen/comm_dp_80"
         android:background="@drawable/load_empty" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/helper.dp.12"
-        android:layout_marginBottom="@dimen/helper.dp.12"
+        android:layout_marginTop="@dimen/comm_dp_12"
+        android:layout_marginBottom="@dimen/comm_dp_12"
         android:text="@string/helper_loading_empty_tip"
         android:textColor="@color/helperColorBlackGray3"
-        android:textSize="@dimen/helper.dp.14" />
+        android:textSize="@dimen/comm_dp_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/helper.dp.12"
+        android:layout_marginBottom="@dimen/comm_dp_12"
         android:text="@string/helper_loading_net_empty"
         android:textColor="@color/helperColorBlackGray6"
-        android:textSize="@dimen/helper.dp.14" />
+        android:textSize="@dimen/comm_dp_14" />
 </LinearLayout>
