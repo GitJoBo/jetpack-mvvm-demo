@@ -12,6 +12,24 @@ import com.jobo.uicommon.databinding.ActivityContainerBinding
 import java.lang.RuntimeException
 import java.lang.ref.WeakReference
 
+/**
+ * @Desc: fragment盛装容器
+ * toStartContainerActivity(requireContext(), "包名.SearchFragment")
+ * val intent = Intent(context, ContainerActivity::class.java)
+    intent.putExtra(ContainerActivity.FRAGMENT, canonicalName)
+    if (bundle != null) {
+    intent.putExtra(ContainerActivity.BUNDLE, bundle)
+    }
+    if (context == null) {
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    appContext.startActivity(intent)
+    } else {
+    context.startActivity(intent)
+    }
+ * @author: admin wsj
+ * @Date: 2022/1/20 11:09 上午
+ *
+ */
 class ContainerActivity : UIVBBaseActivity<BaseViewModel, ActivityContainerBinding>() {
     private val FRAGMENT_TAG = "content_fragment_tag"
 
