@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.gyf.immersionbar.ImmersionBar
 import com.jobo.commonmvvm.R
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
@@ -86,13 +87,12 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
     }
 
     private fun initStatusView(view: View, savedInstanceState: Bundle?) {
-//        mTitleBarView = getTitleBarView()
-//        mTitleBarView?.let {
-//            view.findViewById<LinearLayout>(R.id.baseRootView).addView(it, 0)
-////            是否隐藏标题栏
-//            it.visibleOrGone(showToolBar())
-//        }
-
+        mTitleBarView = getTitleBarView()
+        mTitleBarView?.let {
+//            是否隐藏标题栏
+            it.visibleOrGone(showToolBar())
+        }
+        initImmersionBar()
         getLoadingView()?.let {
             //如果传入了自定义包裹view 将该view注册 做 空 错误 loading 布局处理
             mUiStatusManger = LoadSir.getDefault().register(it) {
@@ -302,5 +302,22 @@ abstract class BaseVmFragment<VM : BaseViewModel> : BaseInitFragment(), BaseIVie
      */
     open fun showToolBar(): Boolean {
         return false
+    }
+
+    open fun isBackPressed(): Boolean {
+        return false
+    }
+
+    /**
+     * 初始化沉浸式
+     * Init immersion bar.
+     */
+    protected open fun initImmersionBar() {
+        //设置共同沉浸式样式
+        mTitleBarView?.let {
+            if (showToolBar()) {
+                ImmersionBar.with(this).titleBar(it).init()
+            }
+        }
     }
 }

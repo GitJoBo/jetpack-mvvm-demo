@@ -52,11 +52,13 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
     }
 
     private fun initStatusView(savedInstanceState: Bundle?) {
-        mTitleBarView = getTitleBarView()
-        mTitleBarView?.let {
-            findViewById<LinearLayout>(R.id.baseRootView).addView(it, 0)
-            //是否隐藏标题栏
-            it.visibleOrGone(showToolBar())
+        if (showToolBar()) {
+            mTitleBarView = getTitleBarView()
+            mTitleBarView?.let {
+                findViewById<LinearLayout>(R.id.baseRootView)?.addView(it, 0)
+                //是否隐藏标题栏
+//                it.visibleOrGone(showToolBar())
+            }
         }
         initImmersionBar()
         findViewById<FrameLayout>(R.id.baseContentView).addView(if (dataBindView == null) LayoutInflater.from(this).inflate(layoutId, null) else dataBindView)
@@ -78,7 +80,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
      * 已创建View 执行在 initView 之前，
      * @param savedInstanceState Bundle?
      */
-    open fun onCreatedView(savedInstanceState: Bundle?){
+    open fun onCreatedView(savedInstanceState: Bundle?) {
 
     }
 
@@ -96,6 +98,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
 
     /**
      * 是否隐藏 标题栏 默认显示
+     * 注意false时需要自行考虑是否使用沉浸式状态栏
+     * ImmersionBar.with(this).titleBar(mToolbar).init()
      */
     open fun showToolBar(): Boolean {
         return true

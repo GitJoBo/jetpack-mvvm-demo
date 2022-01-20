@@ -20,6 +20,7 @@ import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
 import com.jobo.jetpack_mvvm_demo.viewModel.HomeViewModel
 import com.jobo.jetpack_mvvm_demo.viewModel.RequestCollectViewModel
 import com.jobo.uicommon.base.UIDBBaseFragment
+import com.jobo.uicommon.ext.toStartContainerActivity
 
 /**
  * @Desc: 首页
@@ -39,6 +40,10 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
         mBind.includedTitle.titleBar.title = "首页"
         mBind.includedTitle.titleBar.titleView.setTextColor(getColorExt(R.color.white))
         mBind.includedTitle.titleBar.leftView.visibility = View.GONE
+        mBind.includedTitle.titleBar.rightTitle = "搜索"
+        mBind.includedTitle.titleBar.rightView.setOnClickListener {
+            toStartContainerActivity(requireContext(), "com.jobo.jetpack_mvvm_demo.ui.fragment.SearchFragment")
+        }
         mArticleAdapter.run {
             setCollectClick { item, v, _ ->
                 if (v.isChecked) {

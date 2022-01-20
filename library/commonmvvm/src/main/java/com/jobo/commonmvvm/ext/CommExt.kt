@@ -14,9 +14,7 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.hjq.toast.ToastUtils
 import com.jobo.commonmvvm.base.appContext
