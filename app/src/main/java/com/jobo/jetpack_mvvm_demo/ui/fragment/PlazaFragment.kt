@@ -1,6 +1,7 @@
 package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.gyf.immersionbar.ktx.immersionBar
 import com.jobo.commonmvvm.base.BaseVbFragment
@@ -47,5 +48,9 @@ class PlazaFragment : BaseVbFragment<BaseViewModel, FragmentSquareBinding>() {
 //            titleBar(mBind.includedTitle.titleBar)
             titleBar(mBind.includedMagicindicatorViewpager.magicIndicator)
         }
+    }
+
+    override fun getLoadingView(): View? {
+        return mBind.includedMagicindicatorViewpager.viewPager2
     }
 }

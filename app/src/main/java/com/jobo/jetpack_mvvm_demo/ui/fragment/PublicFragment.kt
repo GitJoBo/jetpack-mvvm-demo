@@ -2,6 +2,7 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.fragment.app.Fragment
@@ -100,6 +101,10 @@ class PublicFragment : UIVBBaseFragment<PublicViewModel, IncludeMagicindicatorVi
             mBind.magicIndicator.navigator.notifyDataSetChanged()
             mBind.viewPager2.offscreenPageLimit = mFragments.size
         })
+    }
+
+    override fun getLoadingView(): View? {
+        return mBind.viewPager2
     }
 
 }

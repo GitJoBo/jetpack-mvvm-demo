@@ -4,6 +4,7 @@ import android.text.TextUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chad.library.adapter.base.BaseDelegateMultiAdapter
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.jobo.commonmvvm.ext.toHtml
@@ -26,6 +27,7 @@ class ArticleAdapter(data: MutableList<ArticleBean>?) :
     }
 
     init {
+        setAnimationWithDefault(AnimationType.SlideInLeft)
         // 第一步，设置代理
         setMultiTypeDelegate(object : BaseMultiTypeDelegate<ArticleBean>() {
             override fun getItemType(data: List<ArticleBean>, position: Int): Int {

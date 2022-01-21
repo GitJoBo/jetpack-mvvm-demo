@@ -2,6 +2,7 @@ package com.jobo.jetpack_mvvm_demo.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.fragment.app.Fragment
@@ -109,6 +110,10 @@ class ProjectFragment : BaseVbFragment<ProjectViewModel, FragmentProjectBinding>
 //            titleBar(mBind.includedTitle.titleBar)
             titleBar(mBind.magicIndicator)
         }
+    }
+
+    override fun getLoadingView(): View? {
+        return mBind.viewPager2
     }
 
 

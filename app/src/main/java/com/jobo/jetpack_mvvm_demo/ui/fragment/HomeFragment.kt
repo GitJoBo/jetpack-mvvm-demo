@@ -123,6 +123,10 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
         mViewModel.getList(isRefresh = true, loadingXml = true)
     }
 
+    override fun getLoadingView(): View? {
+        return mBind.includedRV.smartRefreshLayout
+    }
+
     companion object {
         fun newInstance(args: Bundle): HomeFragment {
             val fragment = HomeFragment()

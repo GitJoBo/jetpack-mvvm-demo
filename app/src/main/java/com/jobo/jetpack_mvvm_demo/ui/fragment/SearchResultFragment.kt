@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jobo.commonmvvm.data.annotation.ValueKey
 import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.utils.Config
