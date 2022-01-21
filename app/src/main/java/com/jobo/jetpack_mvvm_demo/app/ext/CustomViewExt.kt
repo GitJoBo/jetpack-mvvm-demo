@@ -57,7 +57,7 @@ fun ViewPager2.initMain(activity: FragmentActivity): ViewPager2 {
                     PublicFragment()
                 }
                 else -> {
-                    MeFragment()
+                    HomeFragment()
                 }
             }
         }

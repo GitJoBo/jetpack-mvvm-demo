@@ -8,6 +8,7 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ToastUtils
+import com.gyf.immersionbar.ImmersionBar
 import com.jobo.commonmvvm.base.BaseVbActivity
 import com.jobo.commonmvvm.base.BaseViewModel
 import com.jobo.commonmvvm.data.annotation.ValueKey
@@ -58,13 +59,20 @@ class WelcomeActivity : BaseVbActivity<BaseViewModel, ActivityWelcomeBinding>() 
             return list
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ImmersionBar.with(this).init()
+        super.onCreate(savedInstanceState)
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
         val isFirst = mmkv.getBoolean(ValueKey.isFirst, true)
         if (isFirst) {
             initData()
             setupViewPager()
         } else {
-            jumpToMainActivity()
+            mBind.viewpager.postDelayed({
+                jumpToMainActivity()
+            }, 300)
         }
 
     }
@@ -143,13 +151,15 @@ class WelcomeActivity : BaseVbActivity<BaseViewModel, ActivityWelcomeBinding>() 
     }
 
     fun onClick(view: View) {
-        mmkv.putBoolean(ValueKey.isFirst,false)
+        mmkv.putBoolean(ValueKey.isFirst, false)
         jumpToMainActivity()
     }
 
     private fun jumpToMainActivity() {
         toStartActivity<MainActivity>(this)
         finish()
+        //带点渐变动画
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     companion object {
