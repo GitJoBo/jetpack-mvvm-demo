@@ -14,6 +14,7 @@ import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.app.ext.initFloatBtn
 import com.jobo.jetpack_mvvm_demo.data.model.bean.ArticleBean
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentHomeBinding
+import com.jobo.jetpack_mvvm_demo.ui.activity.SearchActivity
 import com.jobo.jetpack_mvvm_demo.ui.activity.WebViewActivity
 import com.jobo.jetpack_mvvm_demo.ui.adapter.ArticleAdapter
 import com.jobo.jetpack_mvvm_demo.ui.weight.recyclerview.SpaceItemDecoration
@@ -41,8 +42,10 @@ class HomeFragment : UIDBBaseFragment<HomeViewModel, FragmentHomeBinding>() {
         mBind.includedTitle.titleBar.titleView.setTextColor(getColorExt(R.color.white))
         mBind.includedTitle.titleBar.leftView.visibility = View.GONE
         mBind.includedTitle.titleBar.rightTitle = "搜索"
+        mBind.includedTitle.titleBar.rightView.setTextColor(getColorExt(R.color.white))
         mBind.includedTitle.titleBar.rightView.setOnClickListener {
-            toStartContainerActivity(requireContext(), "com.jobo.jetpack_mvvm_demo.ui.fragment.SearchFragment")
+//            toStartContainerActivity(requireContext(), "com.jobo.jetpack_mvvm_demo.ui.fragment.SearchFragment")
+            toStartActivity<SearchActivity>(requireActivity())
         }
         mArticleAdapter.run {
             setCollectClick { item, v, _ ->

@@ -26,7 +26,7 @@ abstract class UIVBBaseFragment<VM : BaseViewModel, VB : ViewBinding> : BaseVbFr
         mToolbar?.leftIcon = getDrawableExt(R.drawable.bar_arrows_left_white)
         mToolbar?.titleView?.setTextColor(getColorExt(R.color.white))
         mToolbar?.leftView?.setOnClickListener {
-            requireActivity().finish()
+            requireActivity().onBackPressed()
         }
         return mToolbar
     }

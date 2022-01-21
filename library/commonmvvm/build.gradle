@@ -39,6 +39,7 @@ dependencies {
     api "androidx.appcompat:appcompat:$APPCOMPAT"
     api "com.google.android.material:material:$MATERIAL"
     api "androidx.constraintlayout:constraintlayout:$CONSTRAINTLAYOUT"
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     testImplementation "junit:junit:$JUNIT"
     androidTestImplementation "androidx.test.ext:junit:$TEST_EXT_JUNIT"
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE"

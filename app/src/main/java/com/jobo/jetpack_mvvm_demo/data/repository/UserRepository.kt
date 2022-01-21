@@ -158,5 +158,23 @@ object UserRepository {
             .toResponse()
     }
 
+    /**
+     * 搜索热词
+     */
+    fun getSearchHot(): Await<MutableList<SearchBean>> {
+        return RxHttp.get(NetUrl.HOT)
+            .toResponse()
+    }
+
+    /**
+     *
+     */
+    fun postSearchResult(page: Int, k: String): Await<ApiPagerResponse<ArticleBean>> {
+        return RxHttp.postJson(NetUrl.SEARCH_RESULT)
+            .addPath("page", page)
+            .addQuery("k", k)
+            .toResponse()
+    }
+
 
 }

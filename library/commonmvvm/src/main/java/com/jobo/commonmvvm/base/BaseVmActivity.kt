@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
 import com.jobo.commonmvvm.R
@@ -12,6 +13,8 @@ import com.jobo.commonmvvm.ext.*
 import com.jobo.commonmvvm.net.LoadStatusEntity
 import com.jobo.commonmvvm.net.LoadingDialogEntity
 import com.jobo.commonmvvm.net.LoadingType
+import com.jobo.commonmvvm.net.manager.NetState
+import com.jobo.commonmvvm.net.manager.NetworkStateManager
 import com.jobo.commonmvvm.state.BaseEmptyCallback
 import com.jobo.commonmvvm.state.BaseErrorCallback
 import com.jobo.commonmvvm.state.BaseLoadingCallback
@@ -49,6 +52,10 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
         onRequestSuccess()
         //初始化绑定点击方法
         onBindViewClick()
+        //
+        NetworkStateManager.instance.mNetworkStateCallback.observe(this,  {
+            onNetworkStateChanged(it)
+        })
     }
 
     private fun initStatusView(savedInstanceState: Bundle?) {
@@ -251,5 +258,16 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
     override fun finish() {
         dismissLoadingExt()
         super.finish()
+    }
+
+    /**
+     * 网络变化监听 子类重写
+     */
+    open fun onNetworkStateChanged(netState: NetState) {
+        if (netState.isSuccess) {
+            Toast.makeText(applicationContext, "我特么终于有网了啊!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, "我特么怎么断网了!", Toast.LENGTH_SHORT).show()
+        }
     }
 }

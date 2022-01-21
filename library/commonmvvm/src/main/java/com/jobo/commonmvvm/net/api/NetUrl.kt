@@ -105,6 +105,16 @@ object NetUrl {
      */
     const val INTEGRAL_HISTORY = "lg/coin/list/{page}/json"
 
+    /**
+     * 获取搜索热词
+     */
+    const val HOT = "hotkey/json"
+
+    /**
+     * 搜索结果列表
+     */
+    const val SEARCH_RESULT = "article/query/{page}/json"
+
 
     const val UPLOAD_URL = "http://t.xinhuo.com/index.php/Api/Pic/uploadPic"
 

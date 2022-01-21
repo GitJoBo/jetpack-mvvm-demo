@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_search"
+    app:startDestination="@id/search_fragment">
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.jobo.jetpack_mvvm_demo.ui.fragment.SearchFragment"
+        android:label="search_fragment">
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.jobo.jetpack_mvvm_demo.ui.fragment.SearchResultFragment"
+        android:label="SearchResultFragment">
+
+    </fragment>
+</navigation>

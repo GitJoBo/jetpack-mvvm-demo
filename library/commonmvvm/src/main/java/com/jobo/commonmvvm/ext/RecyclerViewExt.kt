@@ -54,3 +54,23 @@ fun RecyclerView.divider(block: DefaultDecoration.() -> Unit): RecyclerView {
     return this
 }
 
+/**
+ * 绑定普通的Recyclerview
+ * @receiver RecyclerView
+ * @param layoutManger LayoutManager
+ * @param bindAdapter Adapter<*>
+ * @param isScroll Boolean
+ * @return RecyclerView
+ */
+fun RecyclerView.init(
+    layoutManger: RecyclerView.LayoutManager,
+    bindAdapter: RecyclerView.Adapter<*>,
+    isScroll: Boolean = true
+): RecyclerView {
+    layoutManager = layoutManger
+    setHasFixedSize(true)
+    adapter = bindAdapter
+    isNestedScrollingEnabled = isScroll
+    return this
+}
+

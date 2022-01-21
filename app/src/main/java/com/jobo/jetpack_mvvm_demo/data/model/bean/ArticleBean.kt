@@ -120,7 +120,7 @@ data class CollectUiState(
     //收藏Id
     var id: String = "-1",
     //请求失败的错误信息
-    var errorMsg: String? = ""
+    var errorMsg: String? = "",
 )
 
 /**
@@ -132,7 +132,8 @@ data class IntegralBean(
     var coinCount: String,//当前积分
     var rank: String,
     var userId: String,
-    var username: String) : Parcelable
+    var username: String,
+) : Parcelable
 
 /**
  * 积分记录
@@ -147,4 +148,18 @@ data class IntegralHistoryBean(
     var type: Int,
     var reason: String,
     var userId: Int,
-    var userName: String) : Parcelable
+    var userName: String,
+) : Parcelable
+
+/**
+ * 搜索热词
+ */
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class SearchBean(
+    var id: Int,
+    var link: String,
+    var name: String,
+    var order: Int,
+    var visible: Int,
+) : Parcelable

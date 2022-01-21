@@ -52,7 +52,7 @@ dependencies {
     api project(":library:widget")
 
     //自定义标题TitleBar
-    api 'com.github.getActivity:TitleBar:9.2'
+    api 'com.github.getActivity:TitleBar:9.3'
     //微信开源项目，替代SP
     api 'com.tencent:mmkv-static:1.2.10'
     //RevealLayout揭示效果布局，可以指定2个子布局，以圆形揭示效果切换选中状态
