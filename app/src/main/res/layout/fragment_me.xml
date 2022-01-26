@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/smartRefreshLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/smartRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnableLoadMore="false">
@@ -100,7 +100,7 @@
                 android:orientation="vertical">
 
                 <com.hjq.widget.layout.SettingBar
-                    android:id="@+id/sb_integral"
+                    android:id="@+id/me_integral_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="我的积分"
@@ -108,31 +108,35 @@
                     app:bar_rightText="当前积分：0" />
 
                 <com.hjq.widget.layout.SettingBar
+                    android:id="@+id/me_collect_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="我的收藏"
                     app:bar_rightDrawable="@drawable/arrows_right_ic" />
 
                 <com.hjq.widget.layout.SettingBar
+                    android:id="@+id/me_open_source_website_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="开源网站"
                     app:bar_rightDrawable="@drawable/arrows_right_ic" />
 
                 <com.hjq.widget.layout.SettingBar
+                    android:id="@+id/me_some_examples_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="一些示例"
                     app:bar_rightDrawable="@drawable/arrows_right_ic" />
 
                 <com.hjq.widget.layout.SettingBar
+                    android:id="@+id/me_system_settings_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="系统设置"
                     app:bar_rightDrawable="@drawable/arrows_right_ic" />
 
                 <com.hjq.widget.layout.SettingBar
-                    android:id="@+id/sb_sign_out"
+                    android:id="@+id/me_sign_out_sb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:bar_leftText="退出登录" />

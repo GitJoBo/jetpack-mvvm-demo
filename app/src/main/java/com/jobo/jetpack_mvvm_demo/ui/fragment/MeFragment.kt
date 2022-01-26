@@ -6,19 +6,17 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.gyf.immersionbar.ImmersionBar
 import com.jobo.commonmvvm.data.annotation.ValueKey
-import com.jobo.commonmvvm.ext.refresh
 import com.jobo.commonmvvm.ext.toStartActivity
 import com.jobo.commonmvvm.net.api.NetHttpClient
 import com.jobo.jetpack_mvvm_demo.R
 import com.jobo.jetpack_mvvm_demo.databinding.FragmentMeBinding
 import com.jobo.jetpack_mvvm_demo.ui.activity.IntegralActivity
+import com.jobo.jetpack_mvvm_demo.ui.activity.MyCollectionActivity
 import com.jobo.jetpack_mvvm_demo.ui.weight.XCollapsingToolbarLayout
 import com.jobo.jetpack_mvvm_demo.utils.CacheUtil
 import com.jobo.jetpack_mvvm_demo.viewModel.MeViewModel
 import com.jobo.uicommon.base.UIVBBaseFragment
-import com.scwang.smart.refresh.header.BezierRadarHeader
 import com.scwang.smart.refresh.header.MaterialHeader
-import rxhttp.RxHttpPlugins
 
 /**
  * @Desc: 我的
@@ -36,15 +34,21 @@ class MeFragment : UIVBBaseFragment<MeViewModel, FragmentMeBinding>(), XCollapsi
         mBind.smartRefreshLayout.setOnRefreshListener {
             lazyLoadData()
         }
-        mBind.sbSignOut.setOnClickListener {
+        mBind.meSignOutSb.setOnClickListener {
             NetHttpClient.sCookieStore.removeAllCookie()
             CacheUtil.setUser(null)
             lazyLoadData()
         }
-        mBind.sbIntegral.setOnClickListener {
+        mBind.meSomeExamplesSb.setOnClickListener {
+
+        }
+        mBind.meCollectSb.setOnClickListener {
+            toStartActivity<MyCollectionActivity>()
+        }
+        mBind.meIntegralSb.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable(ValueKey.KEY, mViewModel.integralBean)
-            toStartActivity<IntegralActivity>(requireActivity(),bundle)
+            toStartActivity<IntegralActivity>(requireActivity(), bundle)
         }
     }
 
@@ -61,10 +65,10 @@ class MeFragment : UIVBBaseFragment<MeViewModel, FragmentMeBinding>(), XCollapsi
 
     @SuppressLint("SetTextI18n")
     override fun onRequestSuccess() {
-        mViewModel.integral.observe(viewLifecycleOwner, {
+        mViewModel.integral.observe(viewLifecycleOwner) {
             mBind.smartRefreshLayout.finishRefresh()
             mBind.tvId.text = "id：${it.userId}  排名：${it.rank}"
-            mBind.sbIntegral.setRightText("当前积分： ${it.coinCount}")
-        })
+            mBind.meSignOutSb.setRightText("当前积分： ${it.coinCount}")
+        }
     }
 }

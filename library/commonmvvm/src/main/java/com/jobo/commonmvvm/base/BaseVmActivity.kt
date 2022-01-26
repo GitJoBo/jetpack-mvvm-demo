@@ -53,7 +53,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
         //初始化绑定点击方法
         onBindViewClick()
         //
-        NetworkStateManager.instance.mNetworkStateCallback.observe(this,  {
+        NetworkStateManager.instance.mNetworkStateCallback.observe(this, {
             onNetworkStateChanged(it)
         })
     }
@@ -112,17 +112,24 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseInitActivity(), BaseIVie
         return true
     }
 
+    open fun immersiveStatusBar(): Boolean {
+        return true
+    }
+
     /**
      * 初始化沉浸式
      * Init immersion bar.
      */
     protected open fun initImmersionBar() {
         //设置共同沉浸式样式
-        mTitleBarView?.let {
+        if (immersiveStatusBar()) {
             if (showToolBar()) {
-                ImmersionBar.with(this).titleBar(it).init()
+                ImmersionBar.with(this).titleBar(mTitleBarView).init()
+            } else {
+                ImmersionBar.with(this).init()
             }
         }
+
     }
 
     /**

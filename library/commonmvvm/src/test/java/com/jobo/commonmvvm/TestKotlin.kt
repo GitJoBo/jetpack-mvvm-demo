@@ -1,5 +1,6 @@
 package com.jobo.commonmvvm
 
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import org.junit.Test
 
@@ -13,12 +14,16 @@ class TestKotlin {
     @Test
     fun main() {
 //        testByLazy()
-        runBlocking {
-//            ctripTest()
-//            coroutineThreadSchedulerTest()
-            coroutineThreadSchedulerWithContextTest()
-        }
+
+//        runBlocking {
+////            ctripTest()
+////            coroutineThreadSchedulerTest()
+//            coroutineThreadSchedulerWithContextTest()
+//        }
+
+
     }
+
 
     /**
      * 携程测试

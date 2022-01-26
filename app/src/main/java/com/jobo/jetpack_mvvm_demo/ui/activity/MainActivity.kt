@@ -64,7 +64,7 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
             }
         }
 
-        liveDataTest()
+//        liveDataTest()
     }
 
     private fun liveDataTest() {
@@ -73,21 +73,19 @@ class MainActivity : BaseDbActivity<BaseViewModel, ActivityMainBinding>() {
         val liveData3: MutableLiveData<String> = MutableLiveData()
         liveData.value = "111 observe 之前"
         for (i in 1..10) {
-            liveData.observe(this, {
+            liveData.observe(this) {
                 "Test1::$it i:$i".logD()
 //                "Test1::$it".logD()
-            })
+            }
 
-            liveData2.observe(this, object : Observer<String> {
-                override fun onChanged(t: String?) {
-                    "Test2::$t i:$i".logD()
-//                    "Test2::$t".logD()
-                }
-            })
-            liveData3.observe(this, { t ->
+            liveData2.observe(this) { t ->
+                "Test2::$t i:$i".logD()
+                //                    "Test2::$t".logD()
+            }
+            liveData3.observe(this) { t ->
                 "Test3::$t i:$i".logD()
                 //                    "Test2::$t".logD()
-            })
+            }
         }
 //        for (i in 1..10){
             liveData.value = "111"

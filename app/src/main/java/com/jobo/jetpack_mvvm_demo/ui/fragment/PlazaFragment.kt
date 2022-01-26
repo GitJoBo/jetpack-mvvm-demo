@@ -18,7 +18,7 @@ import com.jobo.jetpack_mvvm_demo.databinding.FragmentSquareBinding
  *
  */
 class PlazaFragment : BaseVbFragment<BaseViewModel, FragmentSquareBinding>() {
-    val mTitleData = arrayListOf("广场", "每日一问", "体系", "导航")
+    private val mTitleData = arrayListOf("广场", "每日一问", "体系", "导航")
     private var mFragments: ArrayList<Fragment> = arrayListOf()
 
     init {
