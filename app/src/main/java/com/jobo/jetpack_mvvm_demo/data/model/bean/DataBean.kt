@@ -2,7 +2,7 @@ package com.jobo.jetpack_mvvm_demo.data.model.bean
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * 作者　: hegaojian
@@ -163,3 +163,38 @@ data class SearchBean(
     var order: Int,
     var visible: Int,
 ) : Parcelable
+
+/**
+ * 收藏
+ */
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class CollectBean(var chapterId: Int,
+                           var author: String,
+                           var chapterName: String,
+                           var courseId: Int,
+                           var desc: String,
+                           var envelopePic: String,
+                           var id: String,
+                           var link: String,
+                           var niceDate: String,
+                           var origin: String,
+                           var originId: Int,
+                           var publishTime: Long,
+                           var title: String,
+                           var userId: Int,
+                           var visible: Int,
+                           var zan: Int):Parcelable
+
+/**
+ * 收藏的网址类
+ */
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class CollectUrlBean(var icon: String,
+                              var id: String,
+                              var link: String,
+                              var name: String,
+                              var order: Int,
+                              var userId: Int,
+                              var visible: Int) : Parcelable

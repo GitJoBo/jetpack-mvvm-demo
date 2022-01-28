@@ -78,9 +78,9 @@ class ProjectChildFragment : BaseVbFragment<ProjectViewModel, IncludeSmartRefres
     }
 
     override fun onRequestSuccess() {
-        mViewModel.mProjectList.observe(viewLifecycleOwner, {
+        mViewModel.mProjectList.observe(viewLifecycleOwner) {
             mArticleAdapter.loadListSuccess(it, mBind.includedRV.smartRefreshLayout)
-        })
+        }
     }
 
     companion object {

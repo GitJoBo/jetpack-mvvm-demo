@@ -1,6 +1,5 @@
 package com.jobo.jetpack_mvvm_demo.ui.activity
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.gyf.immersionbar.ImmersionBar
@@ -11,7 +10,6 @@ import com.jobo.jetpack_mvvm_demo.app.ext.init
 import com.jobo.jetpack_mvvm_demo.databinding.ActivityMyCollectionBinding
 import com.jobo.jetpack_mvvm_demo.ui.fragment.CollectArticleFragment
 import com.jobo.jetpack_mvvm_demo.ui.fragment.CollectUrlFragment
-import com.jobo.jetpack_mvvm_demo.ui.fragment.PlazaChildFragment
 import com.jobo.uicommon.R
 import com.jobo.uicommon.base.UIVBBaseActivity
 

@@ -2,9 +2,12 @@ package com.jobo.jetpack_mvvm_demo.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import com.jobo.commonmvvm.base.BaseViewModel
+import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.ext.rxHttpRequest
-import com.jobo.jetpack_mvvm_demo.data.model.bean.CollectUiState
+import com.jobo.commonmvvm.net.LoadingType
+import com.jobo.jetpack_mvvm_demo.data.model.bean.*
 import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
+import com.jobo.jetpack_mvvm_demo.ui.adapter.CollectAdapter
 
 /**
  * @Desc: 收藏
@@ -13,6 +16,11 @@ import com.jobo.jetpack_mvvm_demo.data.repository.UserRepository
  *
  */
 class RequestCollectViewModel : BaseViewModel() {
+    //页码 首页数据页码从0开始
+    private var pageIndex = 0
+    var mProjectList: MutableLiveData<ApiPagerResponse<CollectBean>> = MutableLiveData()
+    var mProjectUrlList: MutableLiveData<MutableList<CollectUrlBean>> = MutableLiveData()
+
     /**
      * 收藏文章
      */
@@ -54,6 +62,38 @@ class RequestCollectViewModel : BaseViewModel() {
                     CollectUiState(isSuccess = false, collect = false, errorMsg = it.message, id = id)
                 favoriteArticles.value = uiState
             }
+        }
+    }
+
+    /**
+     * 收藏文章列表
+     */
+    fun favoritesList(isRefresh: Boolean = false, loadingXml: Boolean = false){
+        if (isRefresh){
+            pageIndex = 0
+        }
+        rxHttpRequest {
+            onRequest = {
+                mProjectList.value = UserRepository.getFavoriteArticleList(pageIndex).await()
+                pageIndex++
+            }
+            loadingType = if (loadingXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
+        }
+    }
+
+    /**
+     * 收藏网址列表
+     */
+    fun favoriteURLList(isRefresh: Boolean = false,loadingXml: Boolean = false){
+        if (isRefresh){
+            pageIndex = 0
+        }
+        rxHttpRequest {
+            onRequest = {
+                mProjectUrlList.value = UserRepository.getFavoriteWebsiteList(pageIndex).await()
+                pageIndex++
+            }
+            loadingType = if (loadingXml) LoadingType.LOADING_XML else LoadingType.LOADING_NULL
         }
     }
 

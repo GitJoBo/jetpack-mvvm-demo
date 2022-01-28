@@ -4,6 +4,7 @@ import com.jobo.commonmvvm.net.api.NetUrl
 import com.jobo.commonmvvm.data.response.ApiPagerResponse
 import com.jobo.commonmvvm.data.response.UserInfo
 import com.jobo.jetpack_mvvm_demo.data.model.bean.*
+import com.jobo.jetpack_mvvm_demo.ui.adapter.CollectAdapter
 import rxhttp.toStr
 import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
@@ -112,6 +113,27 @@ object UserRepository {
             .add("username", username)
             .add("password", password)
             .toResponse()
+    }
+
+    /**
+     * 收藏网站列表
+     *
+     */
+    fun getFavoriteWebsiteList(page: Int): Await<MutableList<CollectUrlBean>> {
+        return RxHttp.get(NetUrl.FAVORITE_WEBSITE_LIST)
+            .addPath("page", page)
+            .toResponse()
+    }
+
+    /**
+     * 收藏文章列表
+     * lg/collect/list/{page}/json
+     */
+    fun getFavoriteArticleList(page: Int): Await<ApiPagerResponse<CollectBean>> {
+        return RxHttp.get(NetUrl.FAVORITE_ARTICLE_LIST)
+            .addPath("page", page)
+            .toResponse()
+
     }
 
     /**

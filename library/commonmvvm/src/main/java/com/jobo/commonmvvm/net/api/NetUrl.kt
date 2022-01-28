@@ -81,6 +81,12 @@ object NetUrl {
     const val WX_ARTICLE_LIST = "wxarticle/list/{id}/{page}/json"
 
     /**
+     * 收藏文章列表
+     */
+    const val FAVORITE_ARTICLE_LIST = "lg/collect/list/{page}/json"
+    const val FAVORITE_WEBSITE_LIST = "lg/collect/usertools/json"
+
+    /**
      * 收藏文章
      */
     const val FAVORITE_ARTICLES = "lg/collect/{id}/json"
